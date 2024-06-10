@@ -6,3 +6,61 @@ h1 {
     text-align: center;
     font-family: 'Roboto', sans-serif;
 }
+
+.station-popup {
+    padding: 10px;
+    color: #333;
+}
+
+.station-name {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.total-spaces {
+    font-size: 12px;
+    font-style: italic;
+    margin-bottom: 10px;
+}
+
+.station-info {
+    font-size: 14px;
+    margin: 5px 0;
+}
+
+.last-update {
+    font-size: 10px;
+    font-style: italic;
+    margin-top: 10px;
+    color: #666;
+}
+
+.bikes-available.high,
+.docks-available.high {
+    font-weight: bold;
+    color: #28a745;
+}
+
+.bikes-available.medium,
+.docks-available.medium {
+    font-weight: bold;
+    color: #ffc107;
+}
+
+.bikes-available.low,
+.docks-available.low {
+    font-weight: bold;
+    color: #dc3545;
+}
+
+.leaflet-popup-content-wrapper {
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.leaflet-popup-close-button {
+    color: #007BFF;
+    font-size: 16px;
+    font-weight: bold;
+}
