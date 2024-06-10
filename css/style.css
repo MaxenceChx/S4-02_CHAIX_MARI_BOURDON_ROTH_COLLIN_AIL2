@@ -1,5 +1,5 @@
 #map {
-    height: 625px;
+    height: 85vh;
 }
 
 h1 {
@@ -17,7 +17,7 @@ h1 {
     font-weight: bold;
 }
 
-.total-spaces {
+.total-spaces, .station-address {
     font-size: 12px;
     font-style: italic;
     margin-bottom: 10px;
@@ -63,4 +63,23 @@ h1 {
     color: #007BFF;
     font-size: 16px;
     font-weight: bold;
+}
+
+.station-popup .directions-button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 0;
+    margin-top: 10px;
+    text-decoration: none;
+}
+
+.station-popup .directions-button .material-symbols-outlined {
+    font-size: 24px;
+    color: #000;
+}
+
+.directions-icon {
+    width: 32px;
+    height: 32px;
 }

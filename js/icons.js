@@ -1,37 +1,18 @@
-const high_veloStationIcon = L.IconMaterial.icon({
-    icon: 'directions_bike',
-    iconColor: 'black',
-    markerColor: 'rgba(0, 255, 0, 0.5)',
-    outlineWidth: 1,
-    iconSize: [31, 42],
-    popupAnchor: [0, -42],
-});
+function createCustomIcon(icon, markerColor) {
+    return L.IconMaterial.icon({
+        icon: icon,
+        iconColor: 'black',
+        markerColor: markerColor,
+        outlineWidth: 1,
+        iconSize: [31, 42],
+        popupAnchor: [0, -42],
+    });
+}
 
-const medium_veloStationIcon = L.IconMaterial.icon({
-    icon: 'directions_bike',
-    iconColor: 'black',
-    markerColor: 'rgba(255, 255, 0, 0.5)',
-    outlineWidth: 1,
-    iconSize: [31, 42],
-    popupAnchor: [0, -42],
-});
+const high_veloStationIcon = createCustomIcon('directions_bike', 'rgba(40, 167, 69, 0.75)');
+const medium_veloStationIcon = createCustomIcon('directions_bike', 'rgba(255, 193, 7, 0.75)');
+const low_veloStationIcon = createCustomIcon('directions_bike', 'rgba(220, 53, 69, 0.75)');
+const restaurantIcon = createCustomIcon('restaurant', 'rgba(66, 133, 245, 0.75)');
+const busStopIcon = createCustomIcon('directions_bus', 'rgba(188, 66, 245, 0.75)');
 
-const low_veloStationIcon = L.IconMaterial.icon({
-    icon: 'directions_bike',
-    iconColor: 'black',
-    markerColor: 'rgba(255, 0, 0, 0.5)',
-    outlineWidth: 1,
-    iconSize: [31, 42],
-    popupAnchor: [0, -42],
-});
-
-const restaurantIcon = L.IconMaterial.icon({
-    icon: 'restaurant',
-    iconColor: 'black',
-    markerColor: 'rgba(255,0,0,0.5)',
-    outlineWidth: 1,
-    iconSize: [31, 42],
-    popupAnchor: [0, -42],
-});
-
-export { high_veloStationIcon, medium_veloStationIcon, low_veloStationIcon, restaurantIcon };
+export { high_veloStationIcon, medium_veloStationIcon, low_veloStationIcon, restaurantIcon, busStopIcon };
