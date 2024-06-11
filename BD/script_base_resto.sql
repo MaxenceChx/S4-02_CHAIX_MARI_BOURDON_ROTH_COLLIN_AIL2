@@ -33,7 +33,9 @@ CREATE TABLE `reservation` (
   `nom` varchar(15) DEFAULT NULL,
   `prenom` varchar(15) DEFAULT NULL,
   `nbpers` int(2) DEFAULT NULL,
-  `numtel` varchar(15) DEFAULT NULL
+  `numtel` varchar(15) DEFAULT NULL,
+  `date` date DEFAULT NULL,
+  `num_restau` int(10) NOT NULL,
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- --------------------------------------------------------
@@ -44,8 +46,8 @@ CREATE TABLE `reservation` (
 
 CREATE TABLE `restaurant` (
   `num` int(10) NOT NULL,
-  `nom` varchar(20) DEFAULT NULL,
-  `adresse` varchar(20) DEFAULT NULL,
+  `nom` varchar(30) DEFAULT NULL,
+  `adresse` varchar(30) DEFAULT NULL,
   `latitude` varchar(20) DEFAULT NULL,
   `longitude` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
@@ -59,6 +61,7 @@ CREATE TABLE `restaurant` (
 --
 ALTER TABLE `reservation`
   ADD PRIMARY KEY (`numres`);
+  ADD FOREIGN KEY (num_restau) REFERENCES restaurant(num);
 
 --
 -- Index pour la table `restaurant`
@@ -75,6 +78,13 @@ ALTER TABLE `restaurant`
 --
 ALTER TABLE `reservation`
   MODIFY `numres` int(5) NOT NULL AUTO_INCREMENT;
+COMMIT;
+
+--
+-- AUTO_INCREMENT pour la table `restaurant`
+--
+ALTER TABLE `restaurant`
+  MODIFY `num` int(5) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
