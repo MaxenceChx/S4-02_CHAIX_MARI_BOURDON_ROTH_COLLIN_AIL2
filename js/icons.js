@@ -14,5 +14,6 @@ const medium_veloStationIcon = createCustomIcon('directions_bike', 'rgba(255, 19
 const low_veloStationIcon = createCustomIcon('directions_bike', 'rgba(220, 53, 69, 0.75)');
 const restaurantIcon = createCustomIcon('restaurant', 'rgba(66, 133, 245, 0.75)');
 const busStopIcon = createCustomIcon('directions_bus', 'rgba(188, 66, 245, 0.75)');
+const schoolIcon = createCustomIcon('school', 'rgba(211, 194, 206, 0.75)');
 
-export { high_veloStationIcon, medium_veloStationIcon, low_veloStationIcon, restaurantIcon, busStopIcon };
+export { high_veloStationIcon, medium_veloStationIcon, low_veloStationIcon, restaurantIcon, busStopIcon, schoolIcon };

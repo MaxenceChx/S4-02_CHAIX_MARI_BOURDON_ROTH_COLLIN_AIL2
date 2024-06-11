@@ -8,6 +8,7 @@ h1 {
 }
 
 .station-popup {
+    width: 300px;
     padding: 10px;
     color: #333;
 }
@@ -82,4 +83,43 @@ h1 {
 .directions-icon {
     width: 32px;
     height: 32px;
+}
+
+.badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    max-height: 100px;
+    overflow-y: auto;
+    margin-bottom: 10px;
+}
+
+.badge {
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+}
+
+.badge.oval {
+    width: max-content;
+}
+
+.badge.not-selected {
+    opacity: 0.5;
+}
+
+.prochains-passages {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    max-height: 100px;
+    overflow-y: auto;
+    margin-bottom: 10px;
 }
