@@ -44,8 +44,8 @@ CREATE TABLE `reservation` (
 
 CREATE TABLE `restaurant` (
   `num` int(10) NOT NULL,
-  `nom` varchar(20) DEFAULT NULL,
-  `adresse` varchar(20) DEFAULT NULL,
+  `nom` varchar(30) DEFAULT NULL,
+  `adresse` varchar(30) DEFAULT NULL,
   `latitude` varchar(20) DEFAULT NULL,
   `longitude` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
