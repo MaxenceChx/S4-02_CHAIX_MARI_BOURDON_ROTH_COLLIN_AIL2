@@ -20,7 +20,7 @@ var is_apple_device;
 
 initMap();
 
-getBusStops();
+//getBusStops();
 
 async function initMap() {
     const nancy = await fetch('https://api-adresse.data.gouv.fr/search/?q=nancy&type=municipality&postcode=54000&limit=1').then(response => response.json());
