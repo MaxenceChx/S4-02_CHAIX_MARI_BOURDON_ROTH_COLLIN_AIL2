@@ -1,13 +1,17 @@
 package Incident;
 
+import org.json.JSONObject;
+
 import java.io.Serializable;
 
 public class ReponseIncident implements Serializable {
 
     private int statusCode;
-    private String contentType, responseBody;
+    private String contentType;
 
-    public ReponseIncident(int status, String contenttype, String body) {
+    private JSONObject responseBody;
+
+    public ReponseIncident(int status, String contenttype, JSONObject body) {
         this.statusCode = status;
         this.contentType = contenttype;
         this.responseBody = body;
@@ -21,7 +25,7 @@ public class ReponseIncident implements Serializable {
         return contentType;
     }
 
-    public String getResponseBody() {
+    public JSONObject getResponseBody() {
         return responseBody;
     }
 

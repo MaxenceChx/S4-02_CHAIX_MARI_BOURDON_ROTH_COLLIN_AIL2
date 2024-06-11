@@ -33,7 +33,9 @@ CREATE TABLE `reservation` (
   `nom` varchar(15) DEFAULT NULL,
   `prenom` varchar(15) DEFAULT NULL,
   `nbpers` int(2) DEFAULT NULL,
-  `numtel` varchar(15) DEFAULT NULL
+  `numtel` varchar(15) DEFAULT NULL,
+  `date` date DEFAULT NULL,
+  `num_restau` int(10) NOT NULL,
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- --------------------------------------------------------
@@ -59,6 +61,7 @@ CREATE TABLE `restaurant` (
 --
 ALTER TABLE `reservation`
   ADD PRIMARY KEY (`numres`);
+  ADD FOREIGN KEY (num_restau) REFERENCES restaurant(num);
 
 --
 -- Index pour la table `restaurant`
