@@ -22,9 +22,9 @@ async function addRestaurant(nom, rue, codePostal, ville) {
 // Fonction pour générer le contenu de la popup
 function generatePopupContent(nom, adresse, lat, lon) {
     return `
-        <div class="station-popup">
-            <h3 class="station-name">${nom}</h3>
-            <p>${adresse}</p>
+        <div class="popup">
+            <h3 class="name">${nom}</h3>
+            <p class="address">${adresse}</p>
             <button class="reservation-button">Réserver</button>
             <a href="http://maps.apple.com/?daddr=${lat},${lon}&dirflg=w" class="directions-button" target="_blank">
                 <img class="directions-icon" src="img/${isAppleDevice ? 'apple_maps.png' : 'google_maps.png'}" alt="Itinéraire" />

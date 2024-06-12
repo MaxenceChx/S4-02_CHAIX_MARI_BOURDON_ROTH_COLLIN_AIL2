@@ -57,12 +57,12 @@ async function processStation(station) {
 // Fonction pour générer le contenu de la popup
 function generatePopupContent(station, station_status, lastUpdate) {
     return `
-        <div class="station-popup">
-            <h3 class="station-name">${station.name}</h3>
-            <p class="station-address">${station.address}</p>
+        <div class="popup">
+            <h3 class="name">${station.name}</h3>
+            <p class="address">${station.address}</p>
             <p class="total-spaces">Total des places : ${station.capacity}</p>
-            <p class="station-info">Nombre de vélos disponibles : <span class="bikes-available ${getAvailabilityClass(station_status.num_bikes_available, station.capacity)}">${station_status.num_bikes_available}</span></p>
-            <p class="station-info">Nombre de places disponibles : <span class="docks-available ${getAvailabilityClass(station_status.num_docks_available, station.capacity)}">${station_status.num_docks_available}</span></p>
+            <p class="info">Nombre de vélos disponibles : <span class="bikes-available ${getAvailabilityClass(station_status.num_bikes_available, station.capacity)}">${station_status.num_bikes_available}</span></p>
+            <p class="info">Nombre de places disponibles : <span class="docks-available ${getAvailabilityClass(station_status.num_docks_available, station.capacity)}">${station_status.num_docks_available}</span></p>
             <p class="last-update">Dernière actualisation : ${lastUpdate.toLocaleString('fr-FR')}</p>
             
             <a href="http://maps.apple.com/?daddr=${station.lat},${station.lon}&dirflg=w" class="directions-button" target="_blank">

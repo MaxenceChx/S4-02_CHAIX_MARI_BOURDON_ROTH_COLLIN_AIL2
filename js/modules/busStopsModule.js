@@ -17,6 +17,8 @@ async function getBusStops() {
     for (var stop of stops) {
         await processBusStop(stop);
     }
+
+    return;
 }
 
 // Fonction pour récupérer les arrêts de bus depuis la base de données
@@ -41,13 +43,15 @@ async function processBusStop(stop) {
     });
 
     addMarkerToLayers(marker);
+
+    return;
 }
 
 // Fonction pour générer le contenu de la popup
 function generatePopupContent(stop) {
     return `
-        <div class="station-popup" data-id=${stop.osmid}>
-            <h3 class="station-name">${stop.stop_name}${stop.wheelchair_boarding == 1 || stop.platform_code == 1 ? '<span class="material-symbols-outlined">accessible</span>' : ''}</h3>
+        <div class="popup" data-id=${stop.osmid}>
+            <h3 class="name">${stop.stop_name}${stop.wheelchair_boarding == 1 || stop.platform_code == 1 ? '<span class="material-symbols-outlined">accessible</span>' : ''}</h3>
             <div class="badges"></div>
             <div class="prochains-passages"></div>
             <a href="http://maps.apple.com/?daddr=${stop.stop_lat},${stop.stop_lon}&dirflg=w" class="directions-button" target="_blank">
@@ -65,7 +69,7 @@ function createMarker(stop, popupContent) {
 
 // Fonction pour récupérer l'identifiant osmid de la popup
 function getOsMidFromPopup(popup) {
-    return popup.getElement().getElementsByClassName('station-popup')[0].getAttribute('data-id');
+    return popup.getElement().getElementsByClassName('popup')[0].getAttribute('data-id');
 }
 
 // Fonction pour récupérer les lignes de bus pour un arrêt donné
@@ -159,6 +163,7 @@ function updateProchainsPassagesInPopup(popup, arret_osmid, ligne_osmid) {
                     var prochainPassage = document.createElement('div');
                     prochainPassage.className = 'prochain-passage';
                     prochainPassage.textContent = `${passage.direction} : ${passage.temps_min} min`;
+                    prochainPassage.classList.add('info');
                     prochainsPassagesContainer.appendChild(prochainPassage);
                 });
             }

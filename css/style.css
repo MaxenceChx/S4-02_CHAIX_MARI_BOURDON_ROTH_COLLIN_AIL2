@@ -6,24 +6,29 @@ h1 {
     text-align: center;
 }
 
-.station-popup {
+.popup {
     width: 300px;
     padding: 10px;
     color: #333;
 }
 
-.station-name {
+.directions-button {
+    display: block;
+    width: fit-content;
+}
+
+.name {
     font-size: 18px;
     font-weight: bold;
 }
 
-.total-spaces, .station-address {
+.total-spaces, .address {
     font-size: 12px;
     font-style: italic;
     margin-bottom: 10px;
 }
 
-.station-info {
+.info {
     font-size: 14px;
     margin: 5px 0;
 }
