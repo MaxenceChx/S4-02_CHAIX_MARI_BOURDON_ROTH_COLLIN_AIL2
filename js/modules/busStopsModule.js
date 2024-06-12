@@ -1,9 +1,9 @@
 // Importation des modules nécessaires
-import { supabase } from './supabaseClient.js';
-import { busStopIcon } from './icons.js';
-import { isAppleDevice } from './utils.js';
-import { busStopsLayer, markers_bus_stops } from './map.js';
-import Stan from './stan.js';
+import { supabase } from '../clients/supabaseClient.js';
+import { busStopIcon } from '../utilities/icons.js';
+import { isAppleDevice } from '../utilities/utils.js';
+import { busStopsLayer, markers_bus_stops } from '../map.js';
+import Stan from '../clients/stan.js';
 
 // Fonction pour obtenir les arrêts de bus
 async function getBusStops() {

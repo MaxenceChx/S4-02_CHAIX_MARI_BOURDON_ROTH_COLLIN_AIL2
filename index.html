@@ -16,7 +16,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <link href="css/leaflet.icon-material.css" rel="stylesheet">
-    <script src="js/leaflet.icon-material.js"></script> 
+    <script src="js/utilities/leaflet.icon-material.js"></script> 
 
     <meta charset="UTF-8">
     <title>Nancy</title>
@@ -26,11 +26,37 @@
         <ul>
             <li><a href="#map">Carte</a></li>
             <li><a href="CompteRendu.html">Compte Rendu</a></li>
+            <li><a href="#addForm">Ajouter un restaurant</a></li>
         </ul>
     </nav>
 
 <h1>Carte de Nancy</h1>
     <div id="map"></div>
+    <div id="addForm">
+        <form>
+            <button type="button" class="close-form-btn"><i class="material-icons">close</i></button>
+            <label for="restaurantName">Nom du restaurant <span class="required">*</span></label>
+            <input type="text" id="restaurantName" name="restaurantName" required>
+            
+            <label for="street">Rue <span class="required">*</span></label>
+            <input type="text" id="street" name="street" required>
+            
+            <div class="zipcode-city">
+                <div>
+                    <label for="postalCode">Code postal <span class="required">*</span></label>
+                    <input type="text" id="postalCode" name="postalCode" required>
+                </div>
+                <div>
+                    <label for="city">Ville <span class="required">*</span></label>
+                    <input type="text" id="city" name="city" required>
+                </div>
+            </div>
+            <div class="buttons">
+                <button type="button" class="cancel-btn">Annuler</button>
+                <button type="submit">Ajouter</button>
+            </div>
+        </form>
+    </div>
 </body>
-<script type="module" src="js/map.js"></script>
+<script type="module" src="js/script.js"></script>
 </html>

@@ -1,7 +1,7 @@
 // Importation des modules nécessaires
-import { low_veloStationIcon, medium_veloStationIcon, high_veloStationIcon } from './icons.js';
-import { isAppleDevice } from './utils.js';
-import { stationsLayer, markers_stations } from './map.js';
+import { low_veloStationIcon, medium_veloStationIcon, high_veloStationIcon } from '../utilities/icons.js';
+import { isAppleDevice } from '../utilities/utils.js';
+import { stationsLayer, markers_stations } from '../map.js';
 
 const gbfs = 'https://transport.data.gouv.fr/gbfs/nancy/gbfs.json';
 var system_information_url;
