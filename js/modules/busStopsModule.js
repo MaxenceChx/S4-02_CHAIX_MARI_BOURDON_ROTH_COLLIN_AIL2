@@ -10,15 +10,14 @@ async function getBusStops() {
     let { data: stops, error } = await fetchBusStopsFromDatabase();
 
     if (error) {
-        console.error(error);
-        return;
+        return false;
     }
 
     for (var stop of stops) {
         await processBusStop(stop);
     }
 
-    return;
+    return true;
 }
 
 // Fonction pour récupérer les arrêts de bus depuis la base de données
@@ -82,7 +81,6 @@ async function fetchBusLinesForStop(osmid) {
         .eq('arret', osmid);
 
     if (errorLignesArrets) {
-        console.error(errorLignesArrets);
         return listeLignes;
     }
 

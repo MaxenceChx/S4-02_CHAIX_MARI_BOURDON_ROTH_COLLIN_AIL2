@@ -11,20 +11,34 @@ var stations_status;
 
 // Fonction pour obtenir les stations de vélo
 async function getVeloStations() {
-    await initNancyUrl();
+    try {
+        return await initNancyUrl();
+    } catch (error) {
+        return false;
+    }
 }
 
 // Fonction pour initialiser les URL de Nancy
 async function initNancyUrl() {
-    const nancy = await fetch(gbfs).then(response => response.json());
-    system_information_url = nancy.data.fr.feeds.find(feed => feed.name === 'system_information').url;
-    station_information_url = nancy.data.fr.feeds.find(feed => feed.name === 'station_information').url;
-    station_status_url = nancy.data.fr.feeds.find(feed => feed.name === 'station_status').url;
+    try {
+        const response = await fetch(gbfs);
+        if (!response.ok) {
+            throw new Error(`Erreur HTTP: ${response.status}`);
+        }
+        const nancy = await response.json();
 
-    stations_status = await fetch(station_status_url).then(response => response.json());
+        system_information_url = nancy.data.fr.feeds.find(feed => feed.name === 'system_information').url;
+        station_information_url = nancy.data.fr.feeds.find(feed => feed.name === 'station_information').url;
+        station_status_url = nancy.data.fr.feeds.find(feed => feed.name === 'station_status').url;
 
-    await getStations();
-    return;
+        stations_status = await fetch(station_status_url).then(response => response.json());
+
+        await getStations();
+
+        return true;
+    } catch (error) {
+        return false;
+    }
 }
 
 // Fonction pour obtenir les informations des stations

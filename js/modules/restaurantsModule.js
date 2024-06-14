@@ -4,6 +4,11 @@ import { isAppleDevice } from '../utilities/utils.js';
 import { restaurantsLayer, markers_restaurants } from '../map.js';
 import { getCoordinatesFromAddress } from '../utilities/adresses.js';
 
+// Fonction pour obtenir les restaurants
+async function getRestaurants() {
+    return false;
+}
+
 // Fonction permettant d'ajouter un restaurant
 async function addRestaurant(nom, rue, codePostal, ville) {
     var adresse = `${rue}, ${codePostal} ${ville}`;
@@ -39,4 +44,4 @@ function createMarker(nom, adresse, lat, lon) {
     return L.marker([lat, lon], { icon: restaurantIcon }).bindPopup(popup);
 }
 
-export { addRestaurant }; // Exportation de la fonction addRestaurant
+export { addRestaurant, getRestaurants }; // Exportation des fonctions
