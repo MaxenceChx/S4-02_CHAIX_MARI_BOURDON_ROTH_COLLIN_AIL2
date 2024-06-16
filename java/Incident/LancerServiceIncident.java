@@ -25,9 +25,9 @@ public class LancerServiceIncident {
             // On exporte l'objet
             InterfaceIncident ii = (InterfaceIncident) UnicastRemoteObject.exportObject(serv, 0);
             // On récupère l'annuaire distant rmiregistry
-            //Registry reg = LocateRegistry.getRegistry(adresse, port);
-            //InterfaceClientRMI icr = (InterfaceClientRMI) reg.lookup("clientRMI");
-            //icr.enregistrerService(ii, "incidents");
+            Registry reg = LocateRegistry.getRegistry(adresse, port);
+            InterfaceClient icr = (InterfaceClient) reg.lookup("clientRMI");
+            icr.enregistrerService(ii, "incidents");
             Registry reg = LocateRegistry.createRegistry(port);
             // On enregistre le service dans l'annuaire
             reg.rebind("incidents", ii);
@@ -36,6 +36,8 @@ public class LancerServiceIncident {
             // On gère les exceptions
         } catch (RemoteException e) {
             e.printStackTrace();
+        } catch (NotBoundException e) {
+            throw new RuntimeException(e);
         }
     }
 }
