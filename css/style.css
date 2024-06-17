@@ -197,7 +197,7 @@ a:hover {
     text-decoration: underline;
 }
 
-#addForm {
+#addForm, #weatherModal, #addFromClickForm {
     display: none;
     position: fixed;
     top: 0;
@@ -210,7 +210,7 @@ a:hover {
     padding: 20px;
 }
 
-#addForm form {
+#addForm form, #addFromClickForm form {
     max-width: 450px;
     margin: 40px auto;
     background-color: #fff;
@@ -220,13 +220,13 @@ a:hover {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-#addForm label {
+#addForm label, #addFromClickForm label {
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
 }
 
-.zipcode-city {
+.zipcode-city, .latlng {
     display: flex;
     justify-content: space-between;
 }
@@ -238,7 +238,7 @@ a:hover {
 
 }
 
-#addForm input[type="text"] {
+#addForm input[type="text"], #addFromClickForm input[type="text"]  {
     width: 100%;
     padding: 10px;
     margin-bottom: 10px;
@@ -246,7 +246,12 @@ a:hover {
     border-radius: 4px;
 }
 
-#addForm button[type="submit"] {
+#addForm input[type="text"][readonly], #addFromClickForm input[type="text"][readonly] {
+    background-color: #f9f9f9;
+    cursor: not-allowed;
+}
+
+#addForm button[type="submit"], #addFromClickForm button[type="submit"] {
     background-color: #007BFF;
     color: #fff;
     border: none;
@@ -256,7 +261,7 @@ a:hover {
     margin-right: 10px;
 }
 
-#addForm button[type="button"] {
+#addForm button[type="button"], #addFromClickForm button[type="button"] {
     background-color: #ccc;
     color: #333;
     border: none;
@@ -330,4 +335,35 @@ a:hover {
     color: black;
     text-decoration: none;
     cursor: pointer;
+}
+
+.weather-buttons-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.weather-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.weather-icon {
+    font-size: 2em;
+}
+
+.weather-time {
+    margin-top: 5px;
+    font-size: 0.9em;
+}
+
+.weather-button.active {
+    background-color: #007BFF;
+    color: white;
+    border-radius: 5px;
 }

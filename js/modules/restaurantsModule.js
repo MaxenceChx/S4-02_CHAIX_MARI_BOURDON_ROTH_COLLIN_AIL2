@@ -2,7 +2,7 @@
 import { restaurantIcon } from '../utilities/icons.js';
 import { isAppleDevice } from '../utilities/utils.js';
 import { restaurantsLayer, markers_restaurants } from '../map.js';
-import { getCoordinatesFromAddress } from '../utilities/adresses.js';
+import { getCoordinatesFromAddress, getAdressFromCoordinates } from '../utilities/adresses.js';
 
 // Fonction pour obtenir les restaurants
 async function getRestaurants() {
@@ -15,6 +15,18 @@ async function addRestaurant(nom, rue, codePostal, ville) {
     var coordinates = await getCoordinatesFromAddress(adresse);
     var lon = coordinates[1];
     var lat = coordinates[0];
+
+    var marker = createMarker(nom, adresse, lat, lon);
+
+    markers_restaurants.push(marker);
+    restaurantsLayer.addLayer(marker);
+
+    return;
+}
+
+// Fonction permettant d'ajouter un restaurant à partir d'un clic
+async function addRestaurantFromClick(nom, lat, lon) {
+    var adresse = await getAdressFromCoordinates(lat, lon);
 
     var marker = createMarker(nom, adresse, lat, lon);
 
@@ -44,4 +56,4 @@ function createMarker(nom, adresse, lat, lon) {
     return L.marker([lat, lon], { icon: restaurantIcon }).bindPopup(popup);
 }
 
-export { addRestaurant, getRestaurants }; // Exportation des fonctions
+export { addRestaurant, getRestaurants, addRestaurantFromClick }; // Exportation des fonctions

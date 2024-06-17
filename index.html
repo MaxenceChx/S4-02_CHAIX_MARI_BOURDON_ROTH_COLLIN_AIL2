@@ -18,15 +18,20 @@
     <link href="css/leaflet.icon-material.css" rel="stylesheet">
     <script src="js/utilities/leaflet.icon-material.js"></script> 
 
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/cf92de1372.js" crossorigin="anonymous"></script>
+
     <meta charset="UTF-8">
     <title>Nancy</title>
 </head>
 <body>
     <nav>
         <ul>
-            <li><a href="#map">Carte</a></li>
+            <li><a href="">Carte</a></li>
             <li><a href="CompteRendu.html">Compte Rendu</a></li>
-            <li><a href="#addForm">Ajouter un restaurant</a></li>
+            <li><a href="">Ajouter un restaurant</a></li>
+            <li><a href=""><span id="meteo-icon"></span></a></li>
+            <li><button id="statusButton">Status des points</button></li>
         </ul>
     </nav>
 
@@ -34,7 +39,7 @@
     <div id="map"></div>
     <div id="addForm">
         <form>
-            <button type="button" class="close-form-btn"><i class="material-icons">close</i></button>
+            <span class="close">&times;</span>
             <label for="restaurantName">Nom du restaurant <span class="required">*</span></label>
             <input type="text" id="restaurantName" name="restaurantName" required>
             
@@ -58,7 +63,51 @@
         </form>
     </div>
 
-    <button id="statusButton">Status des points</button>
+    <div id="addFromClickForm">
+        <form>
+            <span class="close">&times;</span>
+            <label for="restaurantNameFromClick">Nom du restaurant <span class="required">*</span></label>
+            <input type="text" id="restaurantNameFromClick" name="restaurantNameFromClick" required>
+            
+            <div class="latlng">
+                <div>
+                    <label for="lat">Latitude <span class="required">*</span></label>
+                    <input type="text" id="lat" name="lat" required readonly>
+                </div>
+                <div>
+                    <label for="lng">Longitude <span class="required">*</span></label>
+                    <input type="text" id="lng" name="lng" required readonly>
+                </div>
+            </div>
+            <div class="buttons">
+                <button type="button" class="cancel-btn">Annuler</button>
+                <button type="submit">Ajouter</button>
+            </div>
+        </form>
+    </div>
+
+    <div id="weatherModal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Informations météo</h2>
+        <div id="weather-buttons-container" class="weather-buttons-container"></div>
+        <div class="weather-details">
+            <div class="weather-icon">
+                <span id="general-icon" class="fas fa-sun fa-2xl"></span>
+            </div>
+            <p><i class="fas fa-tint"></i> Humidité : <span id="humidite"></span>%</p>
+            <p><i class="fas fa-cloud"></i> Couverture nuageuse : <span id="nuage"></span>%</p>
+            <p><i class="fas fa-cloud-showers-heavy"></i> Pluie : <span id="pluie"></span> mm</p>
+            <p><i class="fas fa-wind"></i> Pression : <span id="pression"></span> hPa</p>
+            <p><i class="fas fa-snowflake"></i> Risque de neige : <span id="neige"></span></p>
+            <p><i class="fas fa-thermometer-half"></i> Température : <span id="temperature"></span>°C</p>
+            <p><i id="wind-direction-icon" class="fas fa-location-arrow"></i> Direction du vent : <span id="directionVent"></span>°</p>
+            <p><i class="fas fa-wind"></i> Vitesse du vent : <span id="vitesseVent"></span> km/h</p>
+            <p><i class="fas fa-wind"></i> Rafale de vent : <span id="rafaleVent"></span> km/h</p>
+        </div>
+    </div>
+</div>
+
 
     <div id="statusModal" class="modal">
         <div class="modal-content">

@@ -3,7 +3,10 @@ import { low_veloStationIcon, medium_veloStationIcon, high_veloStationIcon } fro
 import { isAppleDevice } from '../utilities/utils.js';
 import { stationsLayer, markers_stations } from '../map.js';
 
+// URL de l'API GBFS
 const gbfs = 'https://transport.data.gouv.fr/gbfs/nancy/gbfs.json';
+
+// Variables pour les URL des informations du système, des stations et du statut des stations
 var system_information_url;
 var station_information_url;
 var station_status_url;

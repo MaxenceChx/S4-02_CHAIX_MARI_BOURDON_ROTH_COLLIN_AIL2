@@ -1,4 +1,5 @@
 class Stan {
+    // Récupère les prochains passages pour un arrêt donné
     static async getProchainsPassages(arret) {
         const rep = (await Stan.getClient().request({
             method: 'POST',
@@ -40,6 +41,7 @@ class Stan {
         return passages;
     }
 
+    // Récupère le client pour les requêtes
     static getClient() {
         return {
             async request(options) {
