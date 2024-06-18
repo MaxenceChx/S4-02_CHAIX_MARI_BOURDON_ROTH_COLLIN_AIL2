@@ -11,7 +11,7 @@ public class ReponseEtablissement implements Serializable {
     public ReponseEtablissement(int statusCode, String contentType, JSONObject responseBody) {
         this.statusCode = statusCode;
         this.contentType = contentType;
-        this.responseBody = String.valueOf(responseBody);
+        this.responseBody = responseBody;
     }
 
     @Override
@@ -31,7 +31,7 @@ public class ReponseEtablissement implements Serializable {
         return contentType;
     }
 
-    public String getResponseBody() {
+    public JSONObject getResponseBody() {
         return responseBody;
     }
 }
