@@ -1,5 +1,3 @@
-package Incident;
-
 import java.io.Serializable;
 
 public class ReponseIncident implements Serializable {

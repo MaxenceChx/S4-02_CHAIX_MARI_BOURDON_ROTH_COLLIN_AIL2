@@ -1,4 +1,5 @@
-package Incident;
+import Incident.ReponseIncident;
+
 import java.io.FileNotFoundException;
 import java.rmi.Remote;
 import java.rmi.RemoteException;

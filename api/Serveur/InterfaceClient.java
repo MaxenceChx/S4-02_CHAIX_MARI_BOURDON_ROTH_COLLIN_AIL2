@@ -1,7 +1,7 @@
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
-public interface InterfaceClient {
+public interface InterfaceClient extends Remote {
 
     public void enregistrerService(Remote service, String nomService) throws RemoteException;
 
