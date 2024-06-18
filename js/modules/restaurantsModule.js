@@ -37,8 +37,8 @@ async function addRestaurantFromClick(nom, lat, lon) {
 }
 
 // Fonction pour réserver un restaurant
-async function reserverRestaurant(nom, date, heure, nbPersonnes) {
-    console.log(`Réservation pour ${nom} le ${date} à ${heure} pour ${nbPersonnes} personnes`);
+async function reserverRestaurant(nomRestaurant, date, heure, nbPersonnes, nom, prenom) {
+    console.log(`Réservation pour ${nom} ${prenom} au restaurant ${nomRestaurant} le ${date} à ${heure} pour ${nbPersonnes} personnes.`);
 }
 
 // Fonction pour générer le contenu de la popup

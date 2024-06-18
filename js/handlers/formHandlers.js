@@ -42,8 +42,10 @@ function handleFormReservationSubmit(event) {
     const date = document.getElementById('date').value;
     const time = document.getElementById('heure').value;
     const nbPersonnes = document.getElementById('nbPersonnes').value;
+    const nom = document.getElementById('nom').value;
+    const prenom = document.getElementById('prenom').value;
 
-    reserverRestaurant(restaurantName, date, time, nbPersonnes); // Réserver le restaurant
+    reserverRestaurant(restaurantName, date, time, nbPersonnes, nom, prenom); // Réserver le restaurant
 
     // Réinitialiser le formulaire et masquer le modal
     document.querySelector('#reservationForm form').reset();
