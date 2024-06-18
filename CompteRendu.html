@@ -24,17 +24,20 @@
     <h3>Ce qui a été fait</h3>
     <p>Résumé des tâches effectuées :</p>
     <ul>
-        <li>Tâche 1 : Affichage d'une map de Nancy avec Leaflet</li>
-        <li>Tâche 2 : Récupération des données pour les bornes de vélib et affichage de celle-ci sur la carte</li>
-        <li>Tâche 3 : Création d'un client pour récupérer les données des incidents de la route a nancy</li>
-        <li>Tâche 3 : Affichage arrêtes de bus de Nancy avec une section pour filtrer l'affichage</li>
+        <li>Affichage d'une map de Nancy avec <b>Leaflet</b>, Changement du fond de la carte avec <b>MapTiler</b> qui est une technologie intégré a Leaflet, Utilisation du plugin <b>IconMaterial</b> récupérer sur <a href="https://github.com/ilyankou/Leaflet.IconMaterial">github</a> pour afficher les icons d'une manière plus jolie</li>
+        <li>Récupération des <a href="https://transport.data.gouv.fr/gbfs/nancy/gbfs.json">données</a> pour les bornes de vélib a l'aide de l'API Fetch et affichage de celle-ci sur la carte</li>
+        <li>Création de la base de données pour les réstaurants</li>
+        <li>Ajout des arrêts de bus de Nancy avec une section pour filtrer l'affichage</li>
+        <li>Création d'un client à l'aide de HttpClient pour récupérer les données des incidents de la route a nancy</li>
+        <li>Création d'un serveur à l'aide de HttpServer permettant de jouer un rôle de proxy entre les différentes données bloquées et le site web (responsable ?)</li>
+        <li>A suivre bb</li>
     </ul>
 
     <h3>Informations nécessaires à l'utilisation du projet</h3>
     <p>A faire avant de pouvoir lancer le projet :</p>
     <ul>
-        <li><strong>Etape 1 :</strong> Scripts BD resto</li>
-        <li><strong>Etape 2 :</strong> Librairie a mettre (jspas c quoi)</li>
+        <li><strong>Etape 1 :</strong> Executer le scripts ayant pour chemin BD/script_base_resto.sql depuis la racine du projet pour créer la base de données des restaurants. <br>Executer la classe ayant pour chemin java/Restaurant/DBConnection depuis la racine du porojet pour insérer les restaurants dans la table</li>
+        <li><strong>Etape 2 :</strong> Ajouter la librairie JSON : Project Structure -> Libraries -> Boutton "+" -> Choisir "From Maven" et chercher "org.json:json:20240303" -> Boutton "OK"</li>
         <li><strong>Etape 3 :</strong> Services a lancer</li>
         <li><strong>Etape 4 :</strong> Afficher la carte</li>
     </ul>
