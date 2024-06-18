@@ -8,6 +8,7 @@ import java.rmi.ConnectException;
 import java.rmi.RemoteException;
 import java.rmi.registry.Registry;
 import java.rmi.registry.LocateRegistry;
+import Serveur.InterfaceClient;
 
 public class LancerServiceRestaurant {
     private static final boolean DEBUG = true;

@@ -1,3 +1,5 @@
+package Serveur;
+
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import etablissements_sup.ReponseEtablissement;
@@ -12,10 +14,13 @@ public class GetEtablissements implements HttpHandler {
     public GetEtablissements(ClientRMI cr) {
         this.cr = cr;
     }
+
     @Override
     public void handle(HttpExchange t) throws IOException {
         try {
             ReponseEtablissement response = (ReponseEtablissement) this.cr.appelRMI("recupererEtablissements", null);
+            System.out.println("Response received from RMI: " + response.getResponseBody());
+
             t.getResponseHeaders().set("Content-Type", response.getContentType());
             t.sendResponseHeaders(response.getStatusCode(), response.getResponseBody().getBytes().length);
             OutputStream os = t.getResponseBody();
@@ -23,7 +28,9 @@ public class GetEtablissements implements HttpHandler {
             os.close();
         } catch (IOException e) {
             String message = "Une erreur s'est produite lors du traitement de la requête : " + e.getMessage();
+            e.printStackTrace();
             throw new RuntimeException(message, e);
         }
     }
 }
+

@@ -1,3 +1,5 @@
+package Serveur;
+
 import java.io.FileNotFoundException;
 import java.io.Serializable;
 import java.rmi.ConnectException;
@@ -8,6 +10,9 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.ServerNotActiveException;
 import java.util.HashMap;
+import etablissements_sup.*;
+import Incident.*;
+import Restaurant.*;
 
 public class ClientRMI implements InterfaceClient, Serializable {
     public static String ip = "127.0.0.1";
@@ -70,6 +75,7 @@ public class ClientRMI implements InterfaceClient, Serializable {
                     break;
                 case "recupererEtablissements":
                     response = ie.recupererEtablissements();
+                    System.out.println(response);
                     break;
                 case "recupererIncidents":
                     response = ii.recupererIncidents();
@@ -99,7 +105,7 @@ public class ClientRMI implements InterfaceClient, Serializable {
     @Override
     public void enregistrerService(Remote service, String nomService) throws RemoteException {
         this.listeServices.put(nomService, (Remote) service);
-        System.out.println(this.listeServices);
+        System.out.println("Service " + nomService + " enregistré");
     }
 
     public void supprimerService(Remote service) {

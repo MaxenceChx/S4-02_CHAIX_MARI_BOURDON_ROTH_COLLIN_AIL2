@@ -1,19 +1,23 @@
+package Serveur;
+
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
 import java.io.IOException;
 import java.io.OutputStream;
 
-public class GetRestaurants implements HttpHandler{
+public class GetIncidents implements HttpHandler {
+
     private ClientRMI cr;
 
-    public GetRestaurants(ClientRMI cr) {
-        this.cr=cr;
+    public GetIncidents(ClientRMI cr) {
+        this.cr = cr;
     }
+
     @Override
     public void handle(HttpExchange t) {
         try {
-            String response = (String) cr.appelRMI("recupererRestaurants", null);
+            String response = (String) cr.appelRMI("recupererIncidents", null);
             t.getResponseHeaders().set("Content-Type", "application/json");
             t.sendResponseHeaders(200, response.getBytes().length);
             OutputStream os = t.getResponseBody();

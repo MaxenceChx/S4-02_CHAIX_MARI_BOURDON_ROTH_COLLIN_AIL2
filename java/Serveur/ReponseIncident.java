@@ -1,3 +1,5 @@
+package Serveur;
+
 import java.io.Serializable;
 
 public class ReponseIncident implements Serializable {

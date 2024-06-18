@@ -8,6 +8,7 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.ExportException;
 import java.rmi.server.UnicastRemoteObject;
+import Serveur.InterfaceClient;
 
 public class LancerServiceEtablissements {
     public static void main(String[] args) throws AccessException, RemoteException {
@@ -24,13 +25,13 @@ public class LancerServiceEtablissements {
             // On crée une instance du service
             ServiceEtablissements serv = new ServiceEtablissements();
             InterfaceEtablissements ie = (InterfaceEtablissements) UnicastRemoteObject.exportObject(serv, 0);
+            System.out.println(ie);
             // On exporte l'objet
             //InterfaceEtablissements rd = (InterfaceEtablissements) UnicastRemoteObject.exportObject(serv, 0);
             // On récupère l'annuaire distant rmiregistry
             Registry reg = LocateRegistry.getRegistry(adresse, port);
             InterfaceClient icr = (InterfaceClient) reg.lookup("clientRMI");
             icr.enregistrerService(ie, "etablissements");
-            //Registry reg = LocateRegistry.createRegistry(port);
             // On enregistre le service dans l'annuaire
             //reg.rebind("etablissements", rd);
             // On affiche un message pour le suivi
