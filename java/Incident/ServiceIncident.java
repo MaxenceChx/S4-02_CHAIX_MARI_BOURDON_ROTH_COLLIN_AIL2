@@ -1,7 +1,5 @@
 package Incident;
 
-import org.json.JSONObject;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -15,7 +13,7 @@ import java.rmi.server.ServerNotActiveException;
 
 public class ServiceIncident implements InterfaceIncident{
     @Override
-    public ReponseIncident getIncident() throws RemoteException, FileNotFoundException, ServerNotActiveException {
+    public ReponseIncident recupererIncidents() throws RemoteException, FileNotFoundException, ServerNotActiveException {
         ReponseIncident reponseIncident = null;
 
         String urlProxy = "www-cache.iutnc.univ-lorraine.fr";
@@ -37,7 +35,7 @@ public class ServiceIncident implements InterfaceIncident{
         try {
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-            reponseIncident = new ReponseIncident(response.statusCode(), response.headers().firstValue("Content-Type").get(), new JSONObject(response.body()));
+            reponseIncident = new ReponseIncident(response.statusCode(), response.headers().firstValue("Content-Type").get(), response.body());
 
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();

@@ -1,5 +1,3 @@
-package etablissements_sup;
-
 import java.io.Serializable;
 
 public class ReponseEtablissement implements Serializable {
