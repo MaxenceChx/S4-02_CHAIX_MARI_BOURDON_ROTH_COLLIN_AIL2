@@ -59,4 +59,4 @@ class Stan {
     }
 }
 
-export default Stan;
+export default Stan; // Exportation de la classe

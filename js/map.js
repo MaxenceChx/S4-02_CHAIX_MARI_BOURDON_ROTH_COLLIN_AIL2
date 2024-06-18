@@ -1,6 +1,6 @@
     // Importation des modules
     import { getCoordinatesFromCity } from './utilities/adresses.js';
-    import { addFromClickForm } from './script.js';
+    import { addFromClickForm } from './handlers/eventHandlers.js';
 
     var map;
     var mtLayer;

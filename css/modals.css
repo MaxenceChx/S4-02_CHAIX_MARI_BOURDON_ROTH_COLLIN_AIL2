@@ -1,0 +1,114 @@
+#addForm,
+#weatherModal,
+#addFromClickForm,
+#reservationForm,
+#statusModal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.9);
+    z-index: 1000;
+    overflow-y: auto;
+    padding: 20px;
+}
+
+#addForm form,
+#addFromClickForm form,
+#reservationForm form,
+.modal-content {
+    max-width: 450px;
+    margin: 40px auto;
+    background-color: #fff;
+    padding: 20px;
+    padding-right: 40px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#addForm label,
+#addFromClickForm label,
+#reservationForm label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.zipcode-city,
+.latlng,
+.dateHeureNombre,
+.prenomNom {
+    display: flex;
+    justify-content: space-between;
+}
+
+#addForm input[type="text"], 
+#addFromClickForm input[type="text"], 
+#reservationForm input[type="text"], 
+#reservationForm input[type="date"], 
+#reservationForm input[type="time"], 
+#reservationForm input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#addForm input[type="text"][readonly],
+#addFromClickForm input[type="text"][readonly],
+#reservationForm input[type="text"][readonly] {
+    background-color: #f9f9f9;
+    cursor: not-allowed;
+}
+
+#addForm button[type="submit"],
+#addFromClickForm button[type="submit"],
+#reservationForm button[type="submit"],
+#addForm button[type="button"],
+#addFromClickForm button[type="button"],
+#reservationForm button[type="button"] {
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+#addForm button[type="button"],
+#addFromClickForm button[type="button"],
+#reservationForm button[type="button"] {
+    background-color: #ccc;
+    color: #333;
+}
+
+.required {
+    color: red;
+}
+
+.close-form-btn,
+.close {
+    background-color: transparent !important;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    color: #ccc;
+}
+
+.close-form-btn:hover,
+.close:hover,
+.close:focus {
+    color: #999;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}

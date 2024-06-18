@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/main.css">
     
     <!-- Leaflet -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
@@ -87,26 +87,64 @@
     </div>
 
     <div id="weatherModal">
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <h2>Informations météo</h2>
-        <div id="weather-buttons-container" class="weather-buttons-container"></div>
-        <div class="weather-details">
-            <div class="weather-icon">
-                <span id="general-icon" class="fas fa-sun fa-2xl"></span>
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Informations météo</h2>
+            <div id="weather-buttons-container" class="weather-buttons-container"></div>
+            <div class="weather-details">
+                <div class="weather-icon">
+                    <span id="general-icon" class="fas fa-sun fa-2xl"></span>
+                </div>
+                <p><i class="fas fa-tint"></i> Humidité : <span id="humidite"></span>%</p>
+                <p><i class="fas fa-cloud"></i> Couverture nuageuse : <span id="nuage"></span>%</p>
+                <p><i class="fas fa-cloud-showers-heavy"></i> Pluie : <span id="pluie"></span> mm</p>
+                <p><i class="fas fa-wind"></i> Pression : <span id="pression"></span> hPa</p>
+                <p><i class="fas fa-snowflake"></i> Risque de neige : <span id="neige"></span></p>
+                <p><i class="fas fa-thermometer-half"></i> Température : <span id="temperature"></span>°C</p>
+                <p><i id="wind-direction-icon" class="fas fa-location-arrow"></i> Direction du vent : <span id="directionVent"></span>°</p>
+                <p><i class="fas fa-wind"></i> Vitesse du vent : <span id="vitesseVent"></span> km/h</p>
+                <p><i class="fas fa-wind"></i> Rafale de vent : <span id="rafaleVent"></span> km/h</p>
             </div>
-            <p><i class="fas fa-tint"></i> Humidité : <span id="humidite"></span>%</p>
-            <p><i class="fas fa-cloud"></i> Couverture nuageuse : <span id="nuage"></span>%</p>
-            <p><i class="fas fa-cloud-showers-heavy"></i> Pluie : <span id="pluie"></span> mm</p>
-            <p><i class="fas fa-wind"></i> Pression : <span id="pression"></span> hPa</p>
-            <p><i class="fas fa-snowflake"></i> Risque de neige : <span id="neige"></span></p>
-            <p><i class="fas fa-thermometer-half"></i> Température : <span id="temperature"></span>°C</p>
-            <p><i id="wind-direction-icon" class="fas fa-location-arrow"></i> Direction du vent : <span id="directionVent"></span>°</p>
-            <p><i class="fas fa-wind"></i> Vitesse du vent : <span id="vitesseVent"></span> km/h</p>
-            <p><i class="fas fa-wind"></i> Rafale de vent : <span id="rafaleVent"></span> km/h</p>
         </div>
     </div>
-</div>
+
+    <div id="reservationForm">
+        <form>
+            <span class="close">&times;</span>
+            <label for="reservationRestaurantName">Nom du restaurant <span class="required">*</span></label>
+            <input type="text" id="reservationRestaurantName" name="reservationRestaurantName" required readonly>
+
+            <div class="prenomNom">
+                <div>
+                    <label for="prenom">Prénom <span class="required">*</span></label>
+                    <input type="text" id="prenom" name="prenom" required>
+                </div>
+                <div>
+                    <label for="nom">Nom <span class="required">*</span></label>
+                    <input type="text" id="nom" name="nom" required>
+                </div>
+            </div>
+            
+            <div class="dateHeureNombre">
+                <div>
+                    <label for="date">Date <span class="required">*</span></label>
+                    <input type="date" id="date" name="date" required>
+                </div>
+                <div>
+                    <label for="heure">Heure <span class="required">*</span></label>
+                    <input type="time" id="heure" name="heure" required>
+                </div>
+                <div>
+                    <label for="nbPersonnes">Nombre <span class="required">*</span></label>
+                    <input type="number" id="nbPersonnes" name="nbPersonnes" required>
+                </div>
+            </div>
+            <div class="buttons">
+                <button type="button" class="cancel-btn">Annuler</button>
+                <button type="submit">Réserver</button>
+            </div>
+        </form>
+    </div>
 
 
     <div id="statusModal" class="modal">

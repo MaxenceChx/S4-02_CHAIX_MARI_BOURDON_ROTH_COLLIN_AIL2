@@ -36,13 +36,18 @@ async function addRestaurantFromClick(nom, lat, lon) {
     return;
 }
 
+// Fonction pour réserver un restaurant
+async function reserverRestaurant(nom, date, heure, nbPersonnes) {
+    console.log(`Réservation pour ${nom} le ${date} à ${heure} pour ${nbPersonnes} personnes`);
+}
+
 // Fonction pour générer le contenu de la popup
 function generatePopupContent(nom, adresse, lat, lon) {
     return `
         <div class="popup">
             <h3 class="name">${nom}</h3>
             <p class="address">${adresse}</p>
-            <button class="reservation-button">Réserver</button>
+            <button class="reservation-button" data-id="${nom}">Réserver</button>
             <a href="http://maps.apple.com/?daddr=${lat},${lon}&dirflg=w" class="directions-button" target="_blank">
                 <img class="directions-icon" src="img/${isAppleDevice ? 'apple_maps.png' : 'google_maps.png'}" alt="Itinéraire" />
             </a>
@@ -56,4 +61,4 @@ function createMarker(nom, adresse, lat, lon) {
     return L.marker([lat, lon], { icon: restaurantIcon }).bindPopup(popup);
 }
 
-export { addRestaurant, getRestaurants, addRestaurantFromClick }; // Exportation des fonctions
+export { addRestaurant, getRestaurants, addRestaurantFromClick, reserverRestaurant }; // Exportation des fonctions
