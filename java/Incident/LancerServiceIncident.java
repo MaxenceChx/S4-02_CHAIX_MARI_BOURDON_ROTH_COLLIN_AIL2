@@ -28,7 +28,6 @@ public class LancerServiceIncident {
             Registry reg = LocateRegistry.getRegistry(adresse, port);
             InterfaceClient icr = (InterfaceClient) reg.lookup("clientRMI");
             icr.enregistrerService(ii, "incidents");
-            Registry reg = LocateRegistry.createRegistry(port);
             // On enregistre le service dans l'annuaire
             reg.rebind("incidents", ii);
             //On affiche un message pour le suivi
