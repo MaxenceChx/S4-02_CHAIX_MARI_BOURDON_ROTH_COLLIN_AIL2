@@ -45,7 +45,7 @@ public class ServiceEtablissements implements InterfaceEtablissements {
             String contentType = response.headers().firstValue("Content-Type").orElse("");
 
 
-            resultat = new ReponseEtablissement(statusCode, contentType, new JSONObject(response.body()));
+            resultat = new ReponseEtablissement(statusCode, contentType, response.body());
 
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();

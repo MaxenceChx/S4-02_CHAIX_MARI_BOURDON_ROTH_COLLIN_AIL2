@@ -9,8 +9,8 @@ import java.rmi.server.ServerNotActiveException;
 // Définition de l'interface du service distant
 public interface InterfaceRestaurant extends Remote{
     // Définition de la méthode distante qui throw RemoteException et ServerNotActiveException
-    public JSONObject recupererRestaurants() throws RemoteException, ServerNotActiveException;
-    public JSONObject recupererRestaurant(String nom) throws RemoteException, ServerNotActiveException;
+    public String recupererRestaurants() throws RemoteException, ServerNotActiveException;
+    public String recupererRestaurant(String nom) throws RemoteException, ServerNotActiveException;
 
     /*
     * Méthode pour enregistrer une réservation

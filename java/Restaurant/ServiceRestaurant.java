@@ -1,7 +1,5 @@
 package Restaurant;
 
-import org.json.JSONObject;
-
 import java.rmi.RemoteException;
 import java.rmi.server.ServerNotActiveException;
 import java.sql.*;
@@ -24,14 +22,14 @@ public class ServiceRestaurant implements InterfaceRestaurant {
 
 
     @Override
-    public JSONObject recupererRestaurants() throws RemoteException, ServerNotActiveException {
-        StringBuilder res;
+    public String recupererRestaurants() throws RemoteException, ServerNotActiveException {
+        StringBuilder res = new StringBuilder();
         try {
             Statement stmt = connect.createStatement();
             stmt.executeQuery("SELECT * FROM projet_map");
             ResultSet rs = stmt.getResultSet();
 
-            res = new StringBuilder("{\n");
+            res.append("{\n");
             res.append("\t\"restaurants\": [\n");
             while (rs.next()) {
                 res.append("\t\t{\n");
@@ -52,11 +50,11 @@ public class ServiceRestaurant implements InterfaceRestaurant {
             res.append("\t\"error\": \"" + e.getMessage() + "\"");
             res.append("}");
         }
-        return new JSONObject(res.toString());
+        return res.toString();
     }
 
     @Override
-    public JSONObject recupererRestaurant(String nom) throws RemoteException, ServerNotActiveException {
+    public String recupererRestaurant(String nom) throws RemoteException, ServerNotActiveException {
         StringBuilder res;
         try {
             String SQLPrep = "SELECT * FROM restaurant WHERE LOWER(nom) like LOWER(?);";
@@ -87,7 +85,7 @@ public class ServiceRestaurant implements InterfaceRestaurant {
             res.append("\t\"error\": \"" + e.getMessage() + "\"");
             res.append("}");
         }
-        return new JSONObject(res.toString());
+        return res.toString();
     }
 
     @Override

@@ -1,5 +1,3 @@
-import Incident.InterfaceIncident;
-
 import java.io.FileNotFoundException;
 import java.io.Serializable;
 import java.rmi.ConnectException;

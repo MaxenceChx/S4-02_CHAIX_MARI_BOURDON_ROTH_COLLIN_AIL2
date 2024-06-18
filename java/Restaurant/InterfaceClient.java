@@ -7,5 +7,5 @@ public interface InterfaceClient {
 
     public void enregistrerService(Remote service, String nomService) throws RemoteException;
 
-    public void supprimerService(Remote service);
+    public void supprimerService(Remote service) throws RemoteException;
 }
