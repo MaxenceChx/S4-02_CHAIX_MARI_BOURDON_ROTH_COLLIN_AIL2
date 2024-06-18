@@ -1,14 +1,15 @@
-package Incident;
+package etablissements_sup;
 
 import java.rmi.AccessException;
+import java.rmi.ConnectException;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.rmi.server.ExportException;
 import java.rmi.server.UnicastRemoteObject;
 
-public class LancerServiceIncident {
-
+public class LancerServiceEtablissements {
     public static void main(String[] args) throws AccessException, RemoteException {
         try {
             // On récupère le port spécifié en argument ou 1099 par défaut
@@ -21,22 +22,30 @@ public class LancerServiceIncident {
                 port = Integer.parseInt(args[1]);
             }
             // On crée une instance du service
-            ServiceIncident serv = new ServiceIncident();
+            ServiceEtablissements serv = new ServiceEtablissements();
+            InterfaceEtablissements ie = (InterfaceEtablissements) UnicastRemoteObject.exportObject(serv, 0);
             // On exporte l'objet
-            InterfaceIncident ii = (InterfaceIncident) UnicastRemoteObject.exportObject(serv, 0);
+            //InterfaceEtablissements rd = (InterfaceEtablissements) UnicastRemoteObject.exportObject(serv, 0);
             // On récupère l'annuaire distant rmiregistry
             Registry reg = LocateRegistry.getRegistry(adresse, port);
             InterfaceClient icr = (InterfaceClient) reg.lookup("clientRMI");
-            icr.enregistrerService(ii, "incidents");
+            icr.enregistrerService(ie, "etablissements");
+            //Registry reg = LocateRegistry.createRegistry(port);
             // On enregistre le service dans l'annuaire
-            reg.rebind("incidents", ii);
-            //On affiche un message pour le suivi
+            //reg.rebind("etablissements", rd);
+            // On affiche un message pour le suivi
             System.out.println("Service Etablissements lancé sur le port " + port);
             // On gère les exceptions
+        } catch (NumberFormatException e) {
+            System.out.println("Le port spécifié n'est pas un entier");
+        } catch (ExportException e){
+            System.out.println("Le port pour l’export de l’objet est déjà utilisé");
+        } catch (ConnectException e) {
+            System.out.println("L’annuaire rmiregistry est introuvable");
         } catch (RemoteException e) {
             e.printStackTrace();
         } catch (NotBoundException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
     }
 }

@@ -1,0 +1,57 @@
+h1, h2, h3 {
+    color: #333;
+}
+
+h1 {
+    text-align: center;
+}
+
+.name {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.total-spaces, .address {
+    font-size: 12px;
+    font-style: italic;
+    margin-bottom: 10px;
+}
+
+.info {
+    font-size: 14px;
+    margin: 5px 0;
+}
+
+.last-update {
+    font-size: 10px;
+    font-style: italic;
+    margin-top: 10px;
+    color: #666;
+}
+
+.bikes-available.high,
+.docks-available.high {
+    font-weight: bold;
+    color: #28a745;
+}
+
+.bikes-available.medium,
+.docks-available.medium {
+    font-weight: bold;
+    color: #ffc107;
+}
+
+.bikes-available.low,
+.docks-available.low {
+    font-weight: bold;
+    color: #dc3545;
+}
+
+a {
+    color: #1a73e8;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}

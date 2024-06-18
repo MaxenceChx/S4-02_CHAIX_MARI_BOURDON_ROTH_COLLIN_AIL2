@@ -23,11 +23,11 @@ public class DBConnection {
 
     public static void main(String[] var0) throws ClassNotFoundException, SQLException, InterruptedException {
         Connection connection = etablirConnexion();
-        String query = "INSERT INTO restaurant(num, nom, adresse, latitude, longitude) VALUES(1, 'Brasserie L excelsior', '50 Rue Henri-Poincaré, 54000 Nancy', '48.690775', '6.175630')";
+        String query = "INSERT INTO restaurant(num, nom, adresse, latitude, longitude) VALUES(1, 'Brasserie L\'Excelsior', '50 Rue Henri-Poincaré, 54000 Nancy', '48.690775', '6.175630')";
         connection.createStatement().executeUpdate(query);
-        query = "INSERT INTO restaurant(num, nom, adresse, latitude, longitude) VALUES(2, 'Piopa Lasagnax', '61 Rue Pierre Semard, 54000 Nancy', '48.689304', '6.178177')";
+        query = "INSERT INTO restaurant(num, nom, adresse, latitude, longitude) VALUES(2, 'Piopa Lasagna', '61 Rue Pierre Semard, 54000 Nancy', '48.689304', '6.178177')";
         connection.createStatement().executeUpdate(query);
-        query = "INSERT INTO restaurant(num, nom, adresse, latitude, longitude) VALUES(3, 'Le Café Lecce', '3 Rue Crampel, 54000 Nancy', '48.689555', '6.175335')";
+        query = "INSERT INTO restaurant(num, nom, adresse, latitude, longitude) VALUES(3, 'Le Café Leffe', '3 Rue Crampel, 54000 Nancy', '48.689555', '6.175335')";
         connection.createStatement().executeUpdate(query);
         query = "INSERT INTO restaurant(num, nom, adresse, latitude, longitude) VALUES(4, 'Piperno', '1 Bis Rue Notre Dame, 54000 Nancy', '48.689555', '6.180362')";
         connection.createStatement().executeUpdate(query);
@@ -43,5 +43,6 @@ public class DBConnection {
         connection.createStatement().executeUpdate(query);
         query = "INSERT INTO restaurant(num, nom, adresse, latitude, longitude) VALUES(10, 'Au Grand Sérieux', '27 Rue Raugraff, 54000 Nancy', '48.689728', '6.181992')";
         connection.createStatement().executeUpdate(query);
+        query = "INSERT INTO restaurant(num, nom, adresse, latitude, longitude) VALUES(11, 'Papa Joe', '17 Rue des Maréchaux, 54000 Nancy', '48.6941767', '6.1813742')";
     }
 }

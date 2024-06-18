@@ -1,0 +1,117 @@
+.popup {
+    width: 300px;
+    padding: 10px;
+    color: #333;
+}
+
+.directions-button {
+    display: block;
+    width: fit-content;
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 0;
+    margin-top: 10px;
+    text-decoration: none;
+}
+
+.directions-button .material-symbols-outlined {
+    font-size: 24px;
+    color: #000;
+}
+
+.directions-icon {
+    width: 32px;
+    height: 32px;
+}
+
+.badges,
+.prochains-passages {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    max-height: 100px;
+    overflow-y: auto;
+    margin-bottom: 10px;
+}
+
+.badge {
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+}
+
+.badge.oval {
+    width: max-content;
+}
+
+.badge.not-selected {
+    opacity: 0.5;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 20px;
+}
+
+.reservation-button {
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+#statusButton {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+.weather-buttons-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.weather-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.weather-icon {
+    font-size: 2em;
+}
+
+.weather-time {
+    margin-top: 5px;
+    font-size: 0.9em;
+}
+
+.weather-button.active {
+    background-color: #007BFF;
+    color: white;
+    border-radius: 5px;
+}
