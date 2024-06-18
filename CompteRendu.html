@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Compte Rendu</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
 <nav>
@@ -19,18 +19,23 @@
 
     <h3>Schéma de l'architecture</h3>
     <p>Voici un schéma complet de l'architecture de notre projet, avec les technologies employées et les échanges :</p>
-    <img src="path/to/your/architecture-diagram.png" alt="Schéma de l'architecture" style="max-width: 100%; height: auto;">
+    <img src="img/schema.png" alt="Schéma de l'architecture" style="max-width: 100%; height: auto;">
 
     <h3>Ce qui a été fait</h3>
     <p>Résumé des tâches effectuées :</p>
     <ul>
         <li>Affichage d'une map de Nancy avec <b>Leaflet</b>, Changement du fond de la carte avec <b>MapTiler</b> qui est une technologie intégré a Leaflet, Utilisation du plugin <b>IconMaterial</b> récupérer sur <a href="https://github.com/ilyankou/Leaflet.IconMaterial">github</a> pour afficher les icons d'une manière plus jolie</li>
         <li>Récupération des <a href="https://transport.data.gouv.fr/gbfs/nancy/gbfs.json">données</a> pour les bornes de vélib a l'aide de l'API Fetch et affichage de celle-ci sur la carte</li>
+        <li>Affichage de tout les arrêts de bus sur la carte a l'aide d'une base de donnée supabase déjà créer par Maxence et réutilisé pour le projet</li>
         <li>Création de la base de données pour les réstaurants</li>
-        <li>Ajout des arrêts de bus de Nancy avec une section pour filtrer l'affichage</li>
-        <li>Création d'un client à l'aide de HttpClient pour récupérer les données des incidents de la route a nancy</li>
-        <li>Création d'un serveur à l'aide de HttpServer permettant de jouer un rôle de proxy entre les différentes données bloquées et le site web (responsable ?)</li>
-        <li>A suivre bb</li>
+        <li>Création de la barre de navigation avec un onglet "carte","compte rendu" et un onglet "Ajouter un restaurant" pour afficher une modal permettant de rentrer les informations nécessaire a l'ajout d'un restaurant en base de donnée</li>
+        <li>Ajout d'un module de filtre intégré a Leaflet pour choisir les éléments a afficher sur la map</li>
+        <li>Création d'un serveur java utilisant <b>RMI</b> et <b>HttpServer</b> permettant de jouer un rôle de proxy entre les différentes données bloquées et le site web (responsable ?)</li>
+        <li>Création d'un client à l'aide de <b>HttpClient</b> pour récupérer les données des incidents de la route a nancy</li>
+        <li>De la même manière on créer un client pour les établissements supérieur</li>
+        <li>On créer un dernier client qui gère les réstaurants en se connectant a la base de données</li>
+        <li>Ajout d'un icône <a href="https://www.infoclimat.fr/public-api/gfs/json?_ll=48.67103,6.15083&_auth=ARsDFFIsBCZRfFtsD3lSe1Q8ADUPeVRzBHgFZgtuAH1UMQNgUTNcPlU5VClSfVZkUn8AYVxmVW0Eb1I2WylSLgFgA25SNwRuUT1bPw83UnlUeAB9DzFUcwR4BWMLYwBhVCkDb1EzXCBVOFQoUmNWZlJnAH9cfFVsBGRSPVs1UjEBZwNkUjIEYVE6WyYPIFJjVGUAZg9mVD4EbwVhCzMAMFQzA2JRMlw5VThUKFJiVmtSZQBpXGtVbwRlUjVbKVIuARsDFFIsBCZRfFtsD3lSe1QyAD4PZA%3D%3D&_c=19f3aa7d766b6ba91191c8be71dd1ab2">météo</a> a la barre de naviguation pour afficher les informations météoroligique a Nancy du jour actuel </li>
+        <li>Création d'un bouton pour afficher le détail des status des points sur la carte : '✅' si le service est opérationnel, '❌' sinon </li>
     </ul>
 
     <h3>Informations nécessaires à l'utilisation du projet</h3>
@@ -41,12 +46,7 @@
         <li><strong>Etape 3 :</strong> Services a lancer</li>
         <li><strong>Etape 4 :</strong> Afficher la carte</li>
     </ul>
-
-    <h3>Autres informations utiles</h3>
-    <p>Rien pour le moment </p>
-
-    <h3>Liens vers le dépôt Git</h3>
-    <p><a href="https://github.com/MaxenceChx/S4-02_CHAIX_MARI_BOURDON_ROTH_COLLIN_AIL2" target="_blank">Lien vers le dépôt GitHub</a></p>
+    <h3><a href="https://github.com/MaxenceChx/S4-02_CHAIX_MARI_BOURDON_ROTH_COLLIN_AIL2" target="_blank">Lien vers le dépôt GitHub</a></h3>
 </section>
 </body>
 </html>
