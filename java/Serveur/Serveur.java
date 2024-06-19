@@ -128,6 +128,33 @@ public class Serveur {
             }
         });
 
+        server.createContext("/api/createRestaurant", exchange -> {
+            if (exchange.getRequestMethod().equalsIgnoreCase("POST")) {
+
+                InputStreamReader isr = new InputStreamReader(exchange.getRequestBody(), StandardCharsets.UTF_8);
+                BufferedReader br = new BufferedReader(isr);
+                String temp = br.readLine();
+                StringBuilder sb = new StringBuilder();
+                while (temp != null) {
+                    sb.append(temp);
+                    temp = br.readLine();
+                }
+
+                String jsonString = sb.toString();
+                JSONObject obj = new JSONObject(jsonString);
+                // add the values to a map
+                Map<String, String> parameters = new HashMap<>();
+                parameters.put("nom", obj.getString("nom"));
+                parameters.put("adresse", obj.getString("adresse"));
+                parameters.put("latitude", obj.getString("latitude"));
+                parameters.put("longitude", obj.getString("longitude"));
+
+                HttpHandler handler = new PostRestaurant(parameters, client);
+
+                handler.handle(exchange);
+            }
+        });
+
         server.createContext("/api/incidents", new GetIncidents(client));
 
         server.createContext("/api/etablissements", new GetEtablissements(client));
