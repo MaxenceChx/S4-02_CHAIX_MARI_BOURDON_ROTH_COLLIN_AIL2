@@ -25,15 +25,12 @@ public class LancerServiceEtablissements {
             // On crée une instance du service
             ServiceEtablissements serv = new ServiceEtablissements();
             InterfaceEtablissements ie = (InterfaceEtablissements) UnicastRemoteObject.exportObject(serv, 0);
-            // On exporte l'objet
-            //InterfaceEtablissements rd = (InterfaceEtablissements) UnicastRemoteObject.exportObject(serv, 0);
+
             // On récupère l'annuaire distant rmiregistry
-            //Registry reg = LocateRegistry.getRegistry(adresse, port);
-            //InterfaceClient icr = (InterfaceClient) reg.lookup("clientRMI");
-            //icr.enregistrerService(ie, "etablissements");
-            // On enregistre le service dans l'annuaire
-            Registry reg = LocateRegistry.createRegistry(port);
-            reg.rebind("etablissements", ie);
+            Registry reg = LocateRegistry.getRegistry(adresse, port);
+            InterfaceClient icr = (InterfaceClient) reg.lookup("clientRMI");
+            icr.enregistrerService(ie, "etablissements");
+
             // On affiche un message pour le suivi
             System.out.println("Service Etablissements lancé sur le port " + port);
             // On gère les exceptions
@@ -45,6 +42,8 @@ public class LancerServiceEtablissements {
             System.out.println("L’annuaire rmiregistry est introuvable");
         } catch (RemoteException e) {
             e.printStackTrace();
+        } catch (NotBoundException e) {
+            throw new RuntimeException(e);
         }
     }
 }

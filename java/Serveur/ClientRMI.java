@@ -75,7 +75,6 @@ public class ClientRMI implements InterfaceClient, Serializable {
                     break;
                 case "recupererEtablissements":
                     response = ie.recupererEtablissements();
-                    System.out.println(response);
                     break;
                 case "recupererIncidents":
                     response = ii.recupererIncidents();

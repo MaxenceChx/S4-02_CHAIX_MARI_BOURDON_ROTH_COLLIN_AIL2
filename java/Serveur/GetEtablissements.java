@@ -19,7 +19,6 @@ public class GetEtablissements implements HttpHandler {
     public void handle(HttpExchange t) throws IOException {
         try {
             ReponseEtablissement response = (ReponseEtablissement) this.cr.appelRMI("recupererEtablissements", null);
-            System.out.println("Response received from RMI: " + response.getResponseBody());
 
             t.getResponseHeaders().set("Content-Type", response.getContentType());
             t.sendResponseHeaders(response.getStatusCode(), response.getResponseBody().getBytes().length);

@@ -3,14 +3,22 @@ package Incident;
 import java.io.Serializable;
 
 public class ReponseIncident implements Serializable {
+    public int statusCode;
+    public String contentType, responseBody;
 
-    private int statusCode;
-    private String contentType, responseBody;
+    public ReponseIncident(int statusCode, String contentType, String responseBody) {
+        this.statusCode = statusCode;
+        this.contentType = contentType;
+        this.responseBody = responseBody;
+    }
 
-    public ReponseIncident(int status, String contenttype, String body) {
-        this.statusCode = status;
-        this.contentType = contenttype;
-        this.responseBody = body;
+    @Override
+    public String toString() {
+        return "ReponseEtablissement{" +
+                "statusCode=" + statusCode +
+                ", contentType='" + contentType + '\'' +
+                ", responseBody='" + responseBody + '\'' +
+                '}';
     }
 
     public int getStatusCode() {
@@ -23,14 +31,5 @@ public class ReponseIncident implements Serializable {
 
     public String getResponseBody() {
         return responseBody;
-    }
-
-    @Override
-    public String toString() {
-        return "ReponseIncident{{" +
-                "statusCode=" + this.statusCode +
-                ", contentType='" + this.contentType + '\'' +
-                ", responseBody='" + this.responseBody + '\'' +
-                '}';
     }
 }

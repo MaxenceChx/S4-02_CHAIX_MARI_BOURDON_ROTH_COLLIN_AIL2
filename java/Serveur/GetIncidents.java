@@ -1,5 +1,6 @@
 package Serveur;
 
+import Incident.ReponseIncident;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
@@ -15,16 +16,19 @@ public class GetIncidents implements HttpHandler {
     }
 
     @Override
-    public void handle(HttpExchange t) {
+    public void handle(HttpExchange t) throws IOException {
         try {
-            String response = (String) cr.appelRMI("recupererIncidents", null);
-            t.getResponseHeaders().set("Content-Type", "application/json");
-            t.sendResponseHeaders(200, response.getBytes().length);
+            ReponseIncident response = (ReponseIncident) this.cr.appelRMI("recupererIncidents", null);
+
+            t.getResponseHeaders().set("Content-Type", response.getContentType());
+            t.sendResponseHeaders(response.getStatusCode(), response.getResponseBody().getBytes().length);
             OutputStream os = t.getResponseBody();
-            os.write(response.getBytes());
+            os.write(response.getResponseBody().getBytes());
             os.close();
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            String message = "Une erreur s'est produite lors du traitement de la requête : " + e.getMessage();
+            e.printStackTrace();
+            throw new RuntimeException(message, e);
         }
     }
 }

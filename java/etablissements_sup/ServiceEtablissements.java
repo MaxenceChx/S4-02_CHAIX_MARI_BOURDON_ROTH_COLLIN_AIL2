@@ -20,7 +20,7 @@ public class ServiceEtablissements implements InterfaceEtablissements {
         String urlProxy = "www-cache.iutnc.univ-lorraine.fr";
         int port = 3128;
         HttpClient httpClient = HttpClient.newBuilder()
-                //.proxy(ProxySelector.of(new InetSocketAddress(urlProxy, port)))
+                .proxy(ProxySelector.of(new InetSocketAddress(urlProxy, port)))
                 .build();
 
         HttpRequest request = HttpRequest.newBuilder()
