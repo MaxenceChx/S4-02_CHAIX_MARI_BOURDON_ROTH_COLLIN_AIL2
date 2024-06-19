@@ -17,7 +17,7 @@ public class DBConnection {
             System.out.println("connecté");
             return var0;
         } catch (ClassNotFoundException var1) {
-            throw new ClassNotFoundException("Oracle JDBC driver non trouvé.");
+            throw new ClassNotFoundException("MYSQL driver non trouvé.");
         }
     }
 

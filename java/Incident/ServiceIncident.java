@@ -20,10 +20,10 @@ public class ServiceIncident implements InterfaceIncident{
         int portProxy = 3128;
         String url = "https://carto.g-ny.org/data/cifs/cifs_waze_v2.json";
 
-        ProxySelector proxySelector = ProxySelector.of(new InetSocketAddress(urlProxy, portProxy));
+        ProxySelector proxySelector = ProxySelector.of(new InetSocketAddress(urlProxy,portProxy));
 
         HttpClient client = HttpClient.newBuilder()
-                .proxy(proxySelector)
+                //.proxy(proxySelector)
                 .build();
 
         HttpRequest request = HttpRequest.newBuilder()
@@ -35,7 +35,7 @@ public class ServiceIncident implements InterfaceIncident{
         try {
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-            reponseIncident = new ReponseIncident(response.statusCode(), response.headers().firstValue("Content-Type").get(), response.body());
+            reponseIncident = new ReponseIncident(response.statusCode(), response.headers().firstValue("Content-Type").orElse(""), response.body());
 
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
