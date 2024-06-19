@@ -118,9 +118,10 @@ public class ServiceRestaurant implements InterfaceRestaurant {
 
     @Override
     public String enregistrerReservation(int idrestau, Date date, Time heure, String nom, String prenom, int nb_personne) throws RemoteException, ServerNotActiveException {
+        System.out.println("Enregistrement de la réservation pour le restaurant " + idrestau + " le " + date + " à " + heure + " pour " + nb_personne + " personnes");
         StringBuilder res;
         try {
-            String SQLPrep = "INSERT INTO reservation (id_restaurant, date, heure, nom, prenom, nb_personne) VALUES (?, ?, ?, ?, ?, ?);";
+            String SQLPrep = "INSERT INTO reservation (restaurant_id, date, heure, nom, prenom, nb_personne) VALUES (?, ?, ?, ?, ?, ?);";
             PreparedStatement prep = connect.prepareStatement(SQLPrep);
             prep.setInt(1, idrestau);
             prep.setDate(2, date);

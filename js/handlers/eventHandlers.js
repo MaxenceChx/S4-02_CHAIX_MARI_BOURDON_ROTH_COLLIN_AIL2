@@ -43,9 +43,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // Lorsque l'utilisateur clique sur un bouton de réservation
     document.addEventListener('click', function(event) {
         if (event.target.classList.contains('reservation-button')) {
-            const nom = event.target.getAttribute('data-id');
+            const nom = event.target.getAttribute('data-nom');
             showModal(reservationForm);
             document.getElementById('reservationRestaurantName').value = nom;
+            document.getElementById('reservationRestaurantName').setAttribute('data-id', event.target.getAttribute('data-id'));
         }
     });
 

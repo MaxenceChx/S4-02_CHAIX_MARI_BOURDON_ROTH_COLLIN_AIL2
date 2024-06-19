@@ -18,14 +18,16 @@ public class PostRestaurant implements HttpHandler {
     }
 
     @Override
-    public void handle(HttpExchange t) throws IOException {
+    public synchronized void handle(HttpExchange t) throws IOException {
         System.out.println("POST /restaurant");
         try {
             String response = (String) cr.appelRMI("creerRestaurant", new String[]{
                 parameters.get("nom"),
                 parameters.get("adresse"),
                 parameters.get("latitude"),
-                parameters.get("longitude")});
+                parameters.get("longitude")
+            });
+
             t.getResponseHeaders().set("Content-Type", "application/json");
             t.sendResponseHeaders(200, response.getBytes().length);
             OutputStream os = t.getResponseBody();
