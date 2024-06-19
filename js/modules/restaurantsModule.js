@@ -58,12 +58,10 @@ async function addRestaurantFromClick(nom, lat, lon) {
 let isRequestInProgress = false;
 
 async function creerRestaurant(nom, adresse, latitude, longitude) {
-    // Si une requête est déjà en cours, on ne fait rien
     if (isRequestInProgress) {
         return;
     }
 
-    // Indique qu'une requête est en cours
     isRequestInProgress = true;
 
     const data = {
@@ -94,7 +92,6 @@ async function creerRestaurant(nom, adresse, latitude, longitude) {
         console.error('Erreur lors de la création du restaurant :', error);
         throw error;
     } finally {
-        // Réinitialise le drapeau une fois la requête terminée
         isRequestInProgress = false;
     }
 }
