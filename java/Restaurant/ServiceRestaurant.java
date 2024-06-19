@@ -26,14 +26,14 @@ public class ServiceRestaurant implements InterfaceRestaurant {
         StringBuilder res = new StringBuilder();
         try {
             Statement stmt = connect.createStatement();
-            stmt.executeQuery("SELECT * FROM projet_map");
+            stmt.executeQuery("SELECT * FROM restaurant");
             ResultSet rs = stmt.getResultSet();
 
             res.append("{\n");
             res.append("\t\"restaurants\": [\n");
             while (rs.next()) {
                 res.append("\t\t{\n");
-                res.append("\t\t\t\"num\": " + rs.getInt("num") + ",\n");
+                res.append("\t\t\t\"id\": " + rs.getInt("id") + ",\n");
                 res.append("\t\t\t\"nom\": \"" + rs.getString("nom") + "\",\n");
                 res.append("\t\t\t\"adresse\": \"" + rs.getString("adresse") + "\",\n");
                 res.append("\t\t\t\"latitude\": \"" + rs.getString("latitude") + "\",\n");
@@ -67,7 +67,7 @@ public class ServiceRestaurant implements InterfaceRestaurant {
             if (rs.next()) {
                 res.append("\t\"success\": \"true\",\n");
                 res.append("\t\"restaurant\": {\n");
-                res.append("\t\t\"id\": " + rs.getInt("id_restaurant") + ",\n");
+                res.append("\t\t\"id\": " + rs.getInt("id") + ",\n");
                 res.append("\t\t\"nom\": \"" + rs.getString("nom") + "\",\n");
                 res.append("\t\t\"adresse\": \"" + rs.getString("adresse") + "\",\n");
                 res.append("\t\t\"latitude\": " + rs.getString("latitude") + ",\n");

@@ -18,9 +18,17 @@ public class GetEtablissements implements HttpHandler {
     @Override
     public void handle(HttpExchange t) throws IOException {
         try {
+            if (t.getRequestMethod().equalsIgnoreCase("OPTIONS")) {
+                // Respond to preflight CORS requests
+                Utils.addCorsHeaders(t);
+                t.sendResponseHeaders(204, -1); // No Content
+                return;
+            }
+
             ReponseEtablissement response = (ReponseEtablissement) this.cr.appelRMI("recupererEtablissements", null);
 
             t.getResponseHeaders().set("Content-Type", response.getContentType());
+            Utils.addCorsHeaders(t);
             t.sendResponseHeaders(response.getStatusCode(), response.getResponseBody().getBytes().length);
             OutputStream os = t.getResponseBody();
             os.write(response.getResponseBody().getBytes());
@@ -32,4 +40,3 @@ public class GetEtablissements implements HttpHandler {
         }
     }
 }
-

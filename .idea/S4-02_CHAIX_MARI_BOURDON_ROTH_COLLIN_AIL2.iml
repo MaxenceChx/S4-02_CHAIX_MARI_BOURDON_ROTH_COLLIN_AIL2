@@ -9,8 +9,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" exported="" name="mysql-connector-j-8.1.0" level="project" />
-    <orderEntry type="library" exported="" name="ojdbc11" level="project" />
     <orderEntry type="library" name="json" level="project" />
+    <orderEntry type="library" name="mysql.connector.j" level="project" />
   </component>
 </module>

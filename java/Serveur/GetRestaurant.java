@@ -6,7 +6,6 @@ import com.sun.net.httpserver.HttpHandler;
 import java.io.IOException;
 import java.io.OutputStream;
 
-
 public class GetRestaurant implements HttpHandler {
     private String restaurantId;
     private ClientRMI cr;
@@ -19,6 +18,15 @@ public class GetRestaurant implements HttpHandler {
     @Override
     public void handle(HttpExchange t) {
         try {
+            // Add CORS headers
+            Utils.addCorsHeaders(t);
+
+            if (t.getRequestMethod().equalsIgnoreCase("OPTIONS")) {
+                // Respond to preflight CORS requests
+                t.sendResponseHeaders(204, -1); // No Content
+                return;
+            }
+
             String response = (String) cr.appelRMI("recupererRestaurant", new String[] {restaurantId});
 
             t.getResponseHeaders().set("Content-Type", "application/json");

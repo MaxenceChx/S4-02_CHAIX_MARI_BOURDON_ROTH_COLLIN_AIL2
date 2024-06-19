@@ -1,9 +1,10 @@
 // Importation des modules nécessaires
 import { schoolIcon } from '../utilities/icons.js';
+import { serveurRmiUrl } from '../utilities/config.js';
 import { isAppleDevice } from '../utilities/utils.js';
 import { schoolsLayer, markers_schools } from '../map.js';
 
-const schoolsUrl = 'https://data.enseignementsup-recherche.gouv.fr/api/explore/v2.1/catalog/datasets/fr-esr-cartographie_formations_parcoursup/records?select=etab_uai%2C%20etab_nom%2C%20etab_url%2C%20etab_gps&limit=-1&refine=annee%3A%222023%22&refine=departement%3A%22Meurthe-et-Moselle%22';
+const schoolsUrl = serveurRmiUrl + 'etablissements';
 
 // Fonction pour obtenir les établissements scolaires
 async function getSchools() {

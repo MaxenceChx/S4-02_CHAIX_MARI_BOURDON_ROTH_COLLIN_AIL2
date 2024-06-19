@@ -1,9 +1,10 @@
 // Importation des modules nécessaires
 import { isAppleDevice } from '../utilities/utils.js';
+import { serveurRmiUrl } from '../utilities/config.js';
 import { circulationIcon } from '../utilities/icons.js';
 import { circulationLayer, markers_circulation } from '../map.js';
 
-const circulationUrl = 'https://cors-anywhere.herokuapp.com/https://carto.g-ny.org/data/cifs/cifs_waze_v2.json';
+const circulationUrl = serveurRmiUrl + 'incidents';
 
 // Fonction pour obtenir les informations sur la circulation
 async function getCirculation() {

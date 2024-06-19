@@ -10,6 +10,7 @@ import java.util.Map;
 public class PostReservation implements HttpHandler {
     private Map<String, String> parameters;
     private ClientRMI cr;
+
     public PostReservation(Map<String, String> parameters, ClientRMI cr) {
         this.parameters = parameters;
         this.cr = cr;
@@ -17,18 +18,30 @@ public class PostReservation implements HttpHandler {
 
     @Override
     public void handle(HttpExchange t) throws IOException {
-        String response = (String) cr.appelRMI("enregistrerReservation", new String[] {
-                parameters.get("idrestau"),
-                parameters.get("date"),
-                parameters.get("heure"),
-                parameters.get("nom"),
-                parameters.get("prenom"),
-                parameters.get("nb_personne")});
-        t.getResponseHeaders().set("Content-Type", "application/json");
-        // Envoyer la réponse
-        t.sendResponseHeaders(200, response.getBytes().length);
-        OutputStream os = t.getResponseBody();
-        os.write(response.getBytes());
-        os.close();
+        try {
+            // Add CORS headers
+            Utils.addCorsHeaders(t);
+
+            if (t.getRequestMethod().equalsIgnoreCase("OPTIONS")) {
+                // Respond to preflight CORS requests
+                t.sendResponseHeaders(204, -1); // No Content
+                return;
+            }
+
+            String response = (String) cr.appelRMI("enregistrerReservation", new String[]{
+                    parameters.get("idrestau"),
+                    parameters.get("date"),
+                    parameters.get("heure"),
+                    parameters.get("nom"),
+                    parameters.get("prenom"),
+                    parameters.get("nb_personne")});
+            t.getResponseHeaders().set("Content-Type", "application/json");
+            t.sendResponseHeaders(200, response.getBytes().length);
+            OutputStream os = t.getResponseBody();
+            os.write(response.getBytes());
+            os.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

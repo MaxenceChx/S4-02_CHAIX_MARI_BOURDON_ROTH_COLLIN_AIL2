@@ -17,11 +17,10 @@ public class ServiceIncident implements InterfaceIncident {
         ReponseIncident reponseIncident = null;
 
         String urlProxy = "www-cache.iutnc.univ-lorraine.fr";
-        int portProxy = 3128;
         String url = "https://carto.g-ny.org/data/cifs/cifs_waze_v2.json";
         int port = 3128;
         HttpClient httpClient = HttpClient.newBuilder()
-                .proxy(ProxySelector.of(new InetSocketAddress(urlProxy, port)))
+                //.proxy(ProxySelector.of(new InetSocketAddress(urlProxy, port)))
                 .build();
 
         HttpRequest request = HttpRequest.newBuilder()
