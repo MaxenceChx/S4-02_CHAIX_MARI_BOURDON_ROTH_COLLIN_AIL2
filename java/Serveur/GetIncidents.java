@@ -1,8 +1,8 @@
 package Serveur;
 
-import Incident.ReponseIncident;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
+import Incident.ReponseIncident;
 
 import java.io.IOException;
 import java.io.OutputStream;

@@ -9,11 +9,10 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.rmi.RemoteException;
-import java.rmi.server.ServerNotActiveException;
 
 
 public class ServiceEtablissements implements InterfaceEtablissements {
-    public ReponseEtablissement recupererEtablissements() throws RemoteException, ServerNotActiveException, FileNotFoundException {
+    public ReponseEtablissement recupererEtablissements() throws RemoteException {
         ReponseEtablissement resultat = null;
 
         String url = "https://data.enseignementsup-recherche.gouv.fr/api/explore/v2.1/catalog/datasets/fr-esr-cartographie_formations_parcoursup/records?select=etab_uai%2C%20etab_nom%2C%20etab_url%2C%20etab_gps&limit=-1&refine=annee%3A%222023%22&refine=departement%3A%22Meurthe-et-Moselle%22";

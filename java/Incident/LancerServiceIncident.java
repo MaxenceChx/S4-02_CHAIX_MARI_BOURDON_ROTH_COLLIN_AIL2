@@ -11,6 +11,7 @@ import java.rmi.server.UnicastRemoteObject;
 import Serveur.InterfaceClient;
 
 public class LancerServiceIncident {
+
     public static void main(String[] args) throws AccessException, RemoteException {
         try {
             // On récupère le port spécifié en argument ou 1099 par défaut

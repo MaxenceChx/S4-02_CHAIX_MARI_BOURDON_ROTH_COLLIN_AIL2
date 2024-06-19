@@ -13,6 +13,7 @@ public class DBConnection {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             System.out.println("Driver chargé");
+
             Connection var0 = DriverManager.getConnection("jdbc:mysql://localhost:3306/projet_map", "root", "");
             System.out.println("connecté");
             return var0;
