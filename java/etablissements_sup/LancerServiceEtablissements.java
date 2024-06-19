@@ -33,7 +33,7 @@ public class LancerServiceEtablissements {
             InterfaceClient icr = (InterfaceClient) reg.lookup("clientRMI");
             icr.enregistrerService(ie, "etablissements");
             // On enregistre le service dans l'annuaire
-            //reg.rebind("etablissements", rd);
+            reg.rebind("etablissements", ie);
             // On affiche un message pour le suivi
             System.out.println("Service Etablissements lancé sur le port " + port);
             // On gère les exceptions
