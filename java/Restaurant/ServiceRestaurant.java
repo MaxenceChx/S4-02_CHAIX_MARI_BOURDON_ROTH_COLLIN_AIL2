@@ -89,7 +89,8 @@ public class ServiceRestaurant implements InterfaceRestaurant {
     }
 
     @Override
-    public String CreerRestaurant(String nom, String adresse, Double latitude, Double longitude) throws RemoteException, ServerNotActiveException {
+    public String creerRestaurant(String nom, String adresse, Double latitude, Double longitude) throws RemoteException, ServerNotActiveException {
+        System.out.println("Création du restaurant " + nom + " à l'adresse " + adresse + " (" + latitude + ", " + longitude + ")");
         StringBuilder res;
         try {
             String SQLPrep = "INSERT INTO restaurant (nom, adresse, latitude, longitude) VALUES (?, ?, ?, ?);";
@@ -111,6 +112,7 @@ public class ServiceRestaurant implements InterfaceRestaurant {
             res.append("\t\"error\": \"" + e.getMessage() + "\"");
             res.append("}");
         }
+        System.out.println("Restaurant créé : " + res.toString());
         return res.toString();
     }
 

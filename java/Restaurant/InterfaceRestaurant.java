@@ -14,7 +14,7 @@ public interface InterfaceRestaurant extends Remote{
     public String recupererRestaurants() throws RemoteException, ServerNotActiveException;
     public String recupererRestaurant(int num) throws RemoteException, ServerNotActiveException;
 
-    public String CreerRestaurant(String nom, String adresse, Double latitude, Double longitude) throws RemoteException, ServerNotActiveException;
+    public String creerRestaurant(String nom, String adresse, Double latitude, Double longitude) throws RemoteException, ServerNotActiveException;
 
     /*
     * Méthode pour enregistrer une réservation

@@ -70,8 +70,9 @@ public class ClientRMI implements InterfaceClient, Serializable {
                 case "recupererRestaurant":
                     response = ir.recupererRestaurant(Integer.valueOf(params[0]));
                     break;
-                    case "CreerRestaurant":
-                    response = ir.CreerRestaurant(params[0], params[1], Double.valueOf(params[2]), Double.valueOf(params[3]));
+                case "creerRestaurant":
+                    System.out.println("Création du restaurant " + params[0] + " à l'adresse " + params[1] + " (" + params[2] + ", " + params[3] + ")");
+                    response = ir.creerRestaurant(params[0], params[1], Double.valueOf(params[2]), Double.valueOf(params[3]));
                 case "enregistrerReservation":
                     response = ir.enregistrerReservation(Integer.valueOf(params[0]), java.sql.Date.valueOf(params[1]), java.sql.Time.valueOf(params[2]), params[3], params[4], Integer.valueOf(params[5]));
                     break;

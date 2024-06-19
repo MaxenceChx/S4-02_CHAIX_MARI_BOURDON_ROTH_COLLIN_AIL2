@@ -6,6 +6,8 @@ import { restaurantsLayer, markers_restaurants } from '../map.js';
 import { getCoordinatesFromAddress, getAdressFromCoordinates } from '../utilities/adresses.js';
 
 const restaurantsUrl = serveurRmiUrl + 'restaurants';
+const reservationUrl = serveurRmiUrl + 'reservation';
+const createRestaurantUrl = serveurRmiUrl + 'createRestaurant';
 
 // Fonction pour obtenir les restaurants
 async function getRestaurants() {
@@ -40,38 +42,60 @@ async function fetchRestaurants() {
 async function addRestaurant(nom, rue, codePostal, ville) {
     var adresse = `${rue}, ${codePostal} ${ville}`;
     var coordinates = await getCoordinatesFromAddress(adresse);
-    var lon = coordinates[1];
-    var lat = coordinates[0];
+    var lon = coordinates[1].toString();
+    var lat = coordinates[0].toString();
 
-    return createRestaurant(nom, adresse, lat, lon);
+    return creerRestaurant(nom, adresse, lat, lon);
 }
 
 // Fonction permettant d'ajouter un restaurant à partir d'un clic
 async function addRestaurantFromClick(nom, lat, lon) {
     var adresse = await getAdressFromCoordinates(lat, lon);
 
-    return createMarker(nom, adresse, lat, lon);
+    return creerRestaurant(nom, adresse, lat, lon);
 }
 
-// function créer restaurant qui fait un post
-async function createRestaurant(nom, adresse, latitude, longitude) {
-    const response = await fetch(restaurantsUrl, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            nom: nom,
-            adresse: adresse,
-            latitude: latitude,
-            longitude: longitude
-        })
-    });
+// Fonction créer restaurant qui fait un post
+let creationEnCours = false; // Variable pour suivre l'état de la création en cours
 
-    if (response.ok) {
-        return true;
-    } else {
-        return false;
+async function creerRestaurant(nom, adresse, latitude, longitude) {
+    if (creationEnCours) {
+        console.log("Une création est déjà en cours. Attendez la réponse précédente.");
+        return;
+    }
+
+    const url = 'https://127.0.0.1:8000/api/createRestaurant';
+    const data = {
+        nom: nom,
+        adresse: adresse,
+        latitude: latitude,
+        longitude: longitude
+    };
+
+    try {
+        creationEnCours = true; // Marquer la création en cours
+
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        });
+
+        if (!response.ok) {
+            const errorMessage = `Une erreur HTTP ${response.status} s'est produite lors de la création du restaurant.`;
+            throw new Error(errorMessage);
+        }
+
+        const jsonResponse = await response.json();
+        console.log('Réponse du serveur :', jsonResponse);
+        return jsonResponse; // Cette étape pourrait renvoyer une confirmation ou d'autres informations du serveur
+    } catch (error) {
+        console.error('Erreur lors de la création du restaurant :', error);
+        throw error;
+    } finally {
+        creationEnCours = false; // Réinitialiser l'état après la fin de la requête
     }
 }
 

@@ -4,13 +4,11 @@ import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpsConfigurator;
 import com.sun.net.httpserver.HttpsParameters;
 import com.sun.net.httpserver.HttpsServer;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import javax.net.ssl.*;
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.InetSocketAddress;
 import java.nio.charset.StandardCharsets;
 import java.rmi.registry.LocateRegistry;
@@ -75,33 +73,24 @@ public class Serveur {
         });
         server.createContext("/api/restaurants", new GetRestaurants(client));
         server.createContext("/api/restaurant", exchange -> {
-            // Extraire les paramètres de la requête
-            String query = exchange.getRequestURI().getQuery();
+            // Extraire l'ID du restaurant de l'URI de la requête
+            String requestURI = exchange.getRequestURI().toString();
+            String[] uriParts = requestURI.split("/");
             String restaurantId = null;
 
-            if (query != null) {
-                String[] queryParams = query.split("&");
-
-                for (String param : queryParams) {
-                    String[] keyValue = param.split("=");
-
-                    if (keyValue.length == 2 && keyValue[0].equals("nom")) {
-                        restaurantId = keyValue[1];
-                        break;
-                    }
-                }
+            if (uriParts.length > 3) {
+                restaurantId = uriParts[3];
             }
 
-            // Créer une instance de getRestaurant avec l'ID du restaurant
+            // Créer une instance de GetRestaurant avec l'ID du restaurant
             HttpHandler handler = new GetRestaurant(restaurantId, client);
 
-            // Exécuter la logique de traitement de la requête dans getRestaurant
+            // Exécuter la logique de traitement de la requête dans GetRestaurant
             handler.handle(exchange);
         });
 
         server.createContext("/api/reservation", exchange -> {
             if (exchange.getRequestMethod().equalsIgnoreCase("POST")) {
-
                 InputStreamReader isr = new InputStreamReader(exchange.getRequestBody(), StandardCharsets.UTF_8);
                 BufferedReader br = new BufferedReader(isr);
                 String temp = br.readLine();
@@ -129,31 +118,76 @@ public class Serveur {
         });
 
         server.createContext("/api/createRestaurant", exchange -> {
-            if (exchange.getRequestMethod().equalsIgnoreCase("POST")) {
+            System.out.println("Nouvelle requête " + exchange.getRequestMethod() + " reçue sur " + exchange.getRequestURI());
 
+            // Add CORS headers
+            Utils.addCorsHeaders(exchange);
+
+            if (exchange.getRequestMethod().equalsIgnoreCase("OPTIONS")) {
+                // Respond to preflight CORS requests
+                exchange.sendResponseHeaders(204, -1); // No Content
+                return;
+            }
+
+            if (exchange.getRequestMethod().equalsIgnoreCase("POST")) {
                 InputStreamReader isr = new InputStreamReader(exchange.getRequestBody(), StandardCharsets.UTF_8);
                 BufferedReader br = new BufferedReader(isr);
-                String temp = br.readLine();
                 StringBuilder sb = new StringBuilder();
-                while (temp != null) {
+                String temp;
+                while ((temp = br.readLine()) != null) {
                     sb.append(temp);
-                    temp = br.readLine();
                 }
-
                 String jsonString = sb.toString();
-                JSONObject obj = new JSONObject(jsonString);
-                // add the values to a map
-                Map<String, String> parameters = new HashMap<>();
-                parameters.put("nom", obj.getString("nom"));
-                parameters.put("adresse", obj.getString("adresse"));
-                parameters.put("latitude", obj.getString("latitude"));
-                parameters.put("longitude", obj.getString("longitude"));
 
-                HttpHandler handler = new PostRestaurant(parameters, client);
+                System.out.println("Données JSON reçues : " + jsonString);
 
-                handler.handle(exchange);
+                try {
+                    JSONObject obj = new JSONObject(jsonString);
+
+                    // Ajouter les valeurs à une map
+                    Map<String, String> parameters = new HashMap<>();
+                    parameters.put("nom", obj.getString("nom"));
+                    parameters.put("adresse", obj.getString("adresse"));
+                    parameters.put("latitude", obj.getString("latitude"));
+                    parameters.put("longitude", obj.getString("longitude"));
+
+                    System.out.println("Paramètres extraits : " + parameters);
+
+                    boolean restaurantExiste = false;
+
+                    if (!restaurantExiste) {
+                        // Créer une instance de PostRestaurant avec les paramètres et le client RMI
+                        HttpHandler handler = new PostRestaurant(parameters, client);
+                        handler.handle(exchange);
+
+                        System.out.println("Restaurant créé avec succès.");
+                    } else {
+                        // Répondre avec une erreur 409 Conflict si le restaurant existe déjà
+                        String errorResponse = "{\"success\": false, \"error\": \"Le restaurant existe déjà.\"}";
+                        exchange.sendResponseHeaders(409, errorResponse.getBytes().length);
+                        OutputStream os = exchange.getResponseBody();
+                        os.write(errorResponse.getBytes());
+                        os.close();
+
+                        System.out.println("Erreur : Le restaurant existe déjà.");
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    // En cas d'erreur lors de la lecture du JSON
+                    String errorResponse = "{\"success\": false, \"error\": \"Erreur lors de la lecture des données JSON.\"}";
+                    exchange.sendResponseHeaders(400, errorResponse.getBytes().length);
+                    OutputStream os = exchange.getResponseBody();
+                    os.write(errorResponse.getBytes());
+                    os.close();
+                }
+            } else {
+                // Répondre avec une méthode non autorisée si ce n'est pas une requête POST
+                System.out.println("Méthode de requête non autorisée : " + exchange.getRequestMethod());
+                exchange.sendResponseHeaders(405, -1); // 405 Method Not Allowed
             }
         });
+
 
         server.createContext("/api/incidents", new GetIncidents(client));
 

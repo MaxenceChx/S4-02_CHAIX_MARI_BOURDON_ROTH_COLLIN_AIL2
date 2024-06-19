@@ -19,22 +19,17 @@ public class PostReservation implements HttpHandler {
     @Override
     public void handle(HttpExchange t) throws IOException {
         try {
-            // Add CORS headers
-            Utils.addCorsHeaders(t);
-
-            if (t.getRequestMethod().equalsIgnoreCase("OPTIONS")) {
-                // Respond to preflight CORS requests
-                t.sendResponseHeaders(204, -1); // No Content
-                return;
-            }
-
+            // Extract parameters and call RMI method
             String response = (String) cr.appelRMI("enregistrerReservation", new String[]{
-                    parameters.get("idrestau"),
-                    parameters.get("date"),
-                    parameters.get("heure"),
-                    parameters.get("nom"),
-                    parameters.get("prenom"),
-                    parameters.get("nb_personne")});
+                parameters.get("id_restaurant"),
+                parameters.get("date"),
+                parameters.get("heure"),
+                parameters.get("nom"),
+                parameters.get("prenom"),
+                parameters.get("nbpers")
+            });
+
+            // Send response
             t.getResponseHeaders().set("Content-Type", "application/json");
             t.sendResponseHeaders(200, response.getBytes().length);
             OutputStream os = t.getResponseBody();
