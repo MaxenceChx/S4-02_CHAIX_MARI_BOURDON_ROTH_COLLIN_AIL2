@@ -45,7 +45,7 @@ public class ClientRMI implements InterfaceClient, Serializable {
             InterfaceEtablissements ie = null;
             InterfaceIncident ii = null;
             try {
-                ir = (InterfaceRestaurant) this.listeServices.get("service");
+                ir = (InterfaceRestaurant) this.listeServices.get("restaurant");
             } catch (Exception e) {
                 System.out.println("Service restaurant introuvable");
             }

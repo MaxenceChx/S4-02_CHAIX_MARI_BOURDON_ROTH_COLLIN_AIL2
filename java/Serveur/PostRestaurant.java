@@ -20,6 +20,16 @@ public class PostRestaurant implements HttpHandler {
     @Override
     public synchronized void handle(HttpExchange t) throws IOException {
         System.out.println("POST /restaurant");
+
+        // Add CORS headers
+        Utils.addCorsHeaders(t);
+
+        if (t.getRequestMethod().equalsIgnoreCase("OPTIONS")) {
+            // Respond to preflight CORS requests
+            t.sendResponseHeaders(204, -1); // No Content
+            return;
+        }
+
         try {
             String response = (String) cr.appelRMI("creerRestaurant", new String[]{
                 parameters.get("nom"),

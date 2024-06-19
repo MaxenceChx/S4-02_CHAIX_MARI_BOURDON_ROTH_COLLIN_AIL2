@@ -55,7 +55,17 @@ async function addRestaurantFromClick(nom, lat, lon) {
     return creerRestaurant(nom, adresse, lat, lon);
 }
 
+let isRequestInProgress = false;
+
 async function creerRestaurant(nom, adresse, latitude, longitude) {
+    // Si une requête est déjà en cours, on ne fait rien
+    if (isRequestInProgress) {
+        return;
+    }
+
+    // Indique qu'une requête est en cours
+    isRequestInProgress = true;
+
     const data = {
         nom: nom,
         adresse: adresse,
@@ -64,7 +74,7 @@ async function creerRestaurant(nom, adresse, latitude, longitude) {
     };
 
     try {
-        const response = await fetch(createRestaurantUrl, {
+        const request = new Request(createRestaurantUrl, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -72,19 +82,23 @@ async function creerRestaurant(nom, adresse, latitude, longitude) {
             body: JSON.stringify(data)
         });
 
+        const response = await fetch(request);
+
         if (!response.ok) {
             const errorMessage = `Une erreur HTTP ${response.status} s'est produite lors de la création du restaurant.`;
             throw new Error(errorMessage);
         }
 
-        const jsonResponse = await response.json();
-        console.log('Réponse du serveur :', jsonResponse);
-        return jsonResponse; // Cette étape pourrait renvoyer une confirmation ou d'autres informations du serveur
+        return true;
     } catch (error) {
         console.error('Erreur lors de la création du restaurant :', error);
         throw error;
+    } finally {
+        // Réinitialise le drapeau une fois la requête terminée
+        isRequestInProgress = false;
     }
 }
+
 
 // Fonction pour réserver un restaurant
 async function reserverRestaurant(id_restaurant, date, heure, nbpers, nom, prenom) {
