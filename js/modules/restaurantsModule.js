@@ -15,6 +15,11 @@ async function getRestaurants() {
 }
 
 async function fetchRestaurants() {
+    // On vide la couche des restaurants
+    restaurantsLayer.clearLayers();
+    markers_restaurants.length = 0;
+
+    // On récupère les restaurants
     const data = await fetch(restaurantsUrl).then(response => response.json());
 
     if (data) {
@@ -55,15 +60,9 @@ async function addRestaurantFromClick(nom, lat, lon) {
     return creerRestaurant(nom, adresse, lat, lon);
 }
 
-let isRequestInProgress = false;
 
 async function creerRestaurant(nom, adresse, latitude, longitude) {
-    if (isRequestInProgress) {
-        return;
-    }
-
-    isRequestInProgress = true;
-
+    console.log('Création du restaurant :', nom, adresse, latitude, longitude);
     const data = {
         nom: nom,
         adresse: adresse,
@@ -72,7 +71,7 @@ async function creerRestaurant(nom, adresse, latitude, longitude) {
     };
 
     try {
-        const request = new Request(createRestaurantUrl, {
+        const response = await fetch(createRestaurantUrl, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -80,19 +79,19 @@ async function creerRestaurant(nom, adresse, latitude, longitude) {
             body: JSON.stringify(data)
         });
 
-        const response = await fetch(request);
-
         if (!response.ok) {
             const errorMessage = `Une erreur HTTP ${response.status} s'est produite lors de la création du restaurant.`;
             throw new Error(errorMessage);
         }
 
-        return true;
+        const jsonResponse = await response.json();
+        console.log('Réponse du serveur :', jsonResponse);
+        return jsonResponse;
     } catch (error) {
         console.error('Erreur lors de la création du restaurant :', error);
         throw error;
     } finally {
-        isRequestInProgress = false;
+        fetchRestaurants();
     }
 }
 
@@ -124,6 +123,7 @@ async function reserverRestaurant(id_restaurant, date, heure, nbpers, nom, preno
 
         const jsonResponse = await response.json();
         console.log('Réponse du serveur :', jsonResponse);
+        alert('Réservation effectuée avec succès !');
         return jsonResponse;
     } catch (error) {
         console.error('Erreur lors de la réservation :', error);

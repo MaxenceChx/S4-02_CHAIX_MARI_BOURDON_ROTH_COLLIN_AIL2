@@ -18,34 +18,35 @@
     <h2>Compte Rendu</h2>
 
     <h3>Schéma de l'architecture</h3>
-    <p>Voici un schéma complet de l'architecture de notre projet, avec les technologies employées et les échanges :</p>
+    <p>Voici le schéma complet de l'architecture de notre projet, incluant les technologies utilisées et les interactions :</p>
     <img src="img/schema.png" alt="Schéma de l'architecture" style="max-width: 100%; height: auto;">
 
-    <h3>Ce qui a été fait</h3>
-    <p>Résumé des tâches effectuées :</p>
+    <h3>Réalisations</h3>
+    <p>Voici un résumé des tâches accomplies :</p>
     <ul>
-        <li>Affichage d'une map de Nancy avec <b>Leaflet</b>, Changement du fond de la carte avec <b>MapTiler</b> qui est une technologie intégré a Leaflet, Utilisation du plugin <b>IconMaterial</b> récupérer sur <a href="https://github.com/ilyankou/Leaflet.IconMaterial">github</a> pour afficher les icons d'une manière plus jolie</li>
-        <li>Récupération des <a href="https://transport.data.gouv.fr/gbfs/nancy/gbfs.json">données</a> pour les bornes de vélib a l'aide de l'API Fetch et affichage de celle-ci sur la carte</li>
-        <li>Affichage de tout les arrêts de bus sur la carte a l'aide d'une base de donnée supabase déjà créer par Maxence et réutilisé pour le projet</li>
-        <li>Création de la base de données pour les réstaurants</li>
-        <li>Création de la barre de navigation avec un onglet "carte","compte rendu" et un onglet "Ajouter un restaurant" pour afficher une modal permettant de rentrer les informations nécessaire a l'ajout d'un restaurant en base de donnée</li>
-        <li>Ajout d'un module de filtre intégré a Leaflet pour choisir les éléments a afficher sur la map</li>
-        <li>Création d'un serveur java utilisant <b>RMI</b> et <b>HttpServer</b> permettant de jouer un rôle de proxy entre les différentes données bloquées et le site web (responsable ?)</li>
-        <li>Création d'un client à l'aide de <b>HttpClient</b> pour récupérer les données des incidents de la route a nancy</li>
-        <li>De la même manière on créer un client pour les établissements supérieur</li>
-        <li>On créer un dernier client qui gère les réstaurants en se connectant a la base de données</li>
-        <li>Ajout d'un icône <a href="https://www.infoclimat.fr/public-api/gfs/json?_ll=48.67103,6.15083&_auth=ARsDFFIsBCZRfFtsD3lSe1Q8ADUPeVRzBHgFZgtuAH1UMQNgUTNcPlU5VClSfVZkUn8AYVxmVW0Eb1I2WylSLgFgA25SNwRuUT1bPw83UnlUeAB9DzFUcwR4BWMLYwBhVCkDb1EzXCBVOFQoUmNWZlJnAH9cfFVsBGRSPVs1UjEBZwNkUjIEYVE6WyYPIFJjVGUAZg9mVD4EbwVhCzMAMFQzA2JRMlw5VThUKFJiVmtSZQBpXGtVbwRlUjVbKVIuARsDFFIsBCZRfFtsD3lSe1QyAD4PZA%3D%3D&_c=19f3aa7d766b6ba91191c8be71dd1ab2">météo</a> a la barre de naviguation pour afficher les informations météoroligique a Nancy du jour actuel </li>
-        <li>Création d'un bouton pour afficher le détail des status des points sur la carte : '✅' si le service est opérationnel, '❌' sinon </li>
+        <li>Affichage d'une carte de Nancy avec <b>Leaflet</b>, utilisant <b>MapTiler</b> pour le fond de carte intégré à Leaflet. Utilisation du plugin <b>IconMaterial</b> pour une représentation améliorée des icônes, récupéré sur <a href="https://github.com/ilyankou/Leaflet.IconMaterial">GitHub</a>.</li>
+        <li>Récupération des données des bornes de vélib via l'API Fetch et affichage sur la carte.</li>
+        <li>Affichage de tous les arrêts de bus en utilisant une base de données Supabase préexistante, adaptée pour le projet.</li>
+        <li>Création de la base de données pour les restaurants.</li>
+        <li>Mise en place d'une barre de navigation avec des onglets "Carte", "Compte Rendu" et "Ajouter un restaurant", ouvrant une modal pour l'ajout d'un restaurant dans la base de données.</li>
+        <li>Ajout d'un module de filtrage intégré à Leaflet pour choisir les éléments à afficher sur la carte.</li>
+        <li>Création d'un serveur Java utilisant <b>RMI</b> et <b>HttpServer</b> pour agir en tant que proxy entre les données externes et le site web.</li>
+        <li>Implémentation d'un client utilisant <b>HttpClient</b> pour récupérer les informations sur les incidents routiers à Nancy.</li>
+        <li>Création d'un client pour récupérer les informations sur les établissements supérieurs.</li>
+        <li>Création d'un client gérant les restaurants en se connectant à la base de données.</li>
+        <li>Ajout d'une icône de <a href="https://www.infoclimat.fr/public-api/gfs/json?_ll=48.67103,6.15083&_auth=ARsDFFIsBCZRfFtsD3lSe1Q8ADUPeVRzBHgFZgtuAH1UMQNgUTNcPlU5VClSfVZkUn8AYVxmVW0Eb1I2WylSLgFgA25SNwRuUT1bPw83UnlUeAB9DzFUcwR4BWMLYwBhVCkDb1EzXCBVOFQoUmNWZlJnAH9cfFVsBGRSPVs1UjEBZwNkUjIEYVE6WyYPIFJjVGUAZg9mVD4EbwVhCzMAMFQzA2JRMlw5VThUKFJiVmtSZQBpXGtVbwRlUjVbKVIuARsDFFIsBCZRfFtsD3lSe1QyAD4PZA%3D%3D&_c=19f3aa7d766b6ba91191c8be71dd1ab2">météo</a> dans la barre de navigation pour afficher les informations météorologiques actuelles à Nancy.</li>
+        <li>Ajout d'un bouton pour afficher l'état détaillé des services sur la carte : '✅' pour opérationnel et '❌' pour non opérationnel.</li>
     </ul>
 
-    <h3>Informations nécessaires à l'utilisation du projet</h3>
-    <p>A faire avant de pouvoir lancer le projet :</p>
+    <h3>Instructions pour utiliser le projet</h3>
+    <p>Avant de lancer le projet, veuillez suivre ces étapes :</p>
     <ul>
-        <li><strong>Etape 1 :</strong> Executer le scripts ayant pour chemin BD/script_base_resto.sql depuis la racine du projet pour créer la base de données des restaurants. <br>Executer la classe ayant pour chemin java/Restaurant/DBConnection depuis la racine du porojet pour insérer les restaurants dans la table</li>
-        <li><strong>Etape 2 :</strong> Ajouter la librairie JSON : Project Structure -> Libraries -> Boutton "+" -> Choisir "From Maven" et chercher "org.json:json:20240303" -> Boutton "OK"</li>
-        <li><strong>Etape 3 :</strong> Services a lancer</li>
-        <li><strong>Etape 4 :</strong> Afficher la carte</li>
+        <li><strong>Étape 1 :</strong> Exécuter le script situé à BD/script_base_resto.sql à partir de la racine du projet pour créer la base de données des restaurants. Exécuter la classe java/Restaurant/DBConnection depuis la racine du projet pour insérer les restaurants dans la table.</li>
+        <li><strong>Étape 2 :</strong> Ajouter la bibliothèque JSON : Project Structure -> Libraries -> Bouton "+" -> Choisir "From Maven" et rechercher "org.json:json:20240303" -> Bouton "OK".</li>
+        <li><strong>Étape 3 :</strong> Lancer les services nécessaires.</li>
+        <li><strong>Étape 4 :</strong> Afficher la carte.</li>
     </ul>
+    
     <h3><a href="https://github.com/MaxenceChx/S4-02_CHAIX_MARI_BOURDON_ROTH_COLLIN_AIL2" target="_blank">Lien vers le dépôt GitHub</a></h3>
 </section>
 </body>

@@ -157,7 +157,7 @@ public class Serveur {
             Utils.addCorsHeaders(exchange);
 
             if (exchange.getRequestMethod().equalsIgnoreCase("OPTIONS")) {
-
+                // Respond to preflight CORS requests
                 exchange.sendResponseHeaders(204, -1); // No Content
                 return;
             }
@@ -192,11 +192,6 @@ public class Serveur {
 
                     System.out.println("Restaurant créé avec succès.");
 
-                    String response = "{\"success\": true}";
-                    exchange.sendResponseHeaders(200, response.getBytes().length);
-                    OutputStream os = exchange.getResponseBody();
-                    os.write(response.getBytes());
-                    os.close();
                 } catch (JSONException e) {
                     e.printStackTrace();
                     // En cas d'erreur lors de la lecture du JSON
@@ -209,11 +204,7 @@ public class Serveur {
             } else {
                 // Répondre avec une méthode non autorisée si ce n'est pas une requête POST
                 System.out.println("Méthode de requête non autorisée : " + exchange.getRequestMethod());
-                String response = "{\"success\": false, \"error\": \"Méthode de requête non autorisée.\"}";
-                exchange.sendResponseHeaders(405, response.getBytes().length);
-                OutputStream os = exchange.getResponseBody();
-                os.write(response.getBytes());
-                os.close();
+                exchange.sendResponseHeaders(405, -1); // 405 Method Not Allowed
             }
         });
 

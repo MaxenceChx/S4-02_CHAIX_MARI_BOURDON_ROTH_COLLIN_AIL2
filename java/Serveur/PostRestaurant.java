@@ -18,18 +18,7 @@ public class PostRestaurant implements HttpHandler {
     }
 
     @Override
-    public synchronized void handle(HttpExchange t) throws IOException {
-        System.out.println("POST /restaurant");
-
-        // Add CORS headers
-        Utils.addCorsHeaders(t);
-
-        if (t.getRequestMethod().equalsIgnoreCase("OPTIONS")) {
-            // Respond to preflight CORS requests
-            t.sendResponseHeaders(204, -1); // No Content
-            return;
-        }
-
+    public void handle(HttpExchange t) throws IOException {
         try {
             String response = (String) cr.appelRMI("creerRestaurant", new String[]{
                 parameters.get("nom"),
@@ -38,9 +27,11 @@ public class PostRestaurant implements HttpHandler {
                 parameters.get("longitude")
             });
 
+            // Send response
             t.getResponseHeaders().set("Content-Type", "application/json");
             t.sendResponseHeaders(200, response.getBytes().length);
             OutputStream os = t.getResponseBody();
+            System.out.println(response);
             os.write(response.getBytes());
             os.close();
         } catch (IOException e) {
